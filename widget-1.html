@@ -13,13 +13,17 @@
         <link rel="manifest" href="site.webmanifest">
         <link rel="shortcut icon" href="" type="image/x-icon">
         <link rel="icon" href="" type="image/x-icon">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
         
         <!-- Place favicon.ico in the root directory -->
 
-        <link rel="stylesheet" href="assets/normalize.css">                
+        <link rel="stylesheet" href="assets/normalize.css">        
+        <link rel="stylesheet" href="assets/slick.css">
         <link rel="stylesheet" href="assets/main.css">
         <link rel="stylesheet" href="assets/mq.css">
+
+        <script src="assets/jquery-3.2.1.min.js"></script>
+        <script src="assets/slick.min.js"></script>
     </head>
     <body>
         
@@ -67,9 +71,9 @@
         <main>
             <article class="main__widget">
                 <div class="main__widget_title">Signal Boosters for all building sizes - we have the product to fit your network</div>
-                <section class="main__widget_body">
+                <section class="main__widget_body step-3">
                     <h2>Choose your Mobile Repeater</h2>
-                    <ul class="main__widget_steps step-3 clearfix">
+                    <ul class="main__widget_steps clearfix">
                         <li class="step-1">
                             <i>1</i>
                             <span>Network</span>
@@ -82,13 +86,159 @@
                             <i>3</i>
                             <span>Purpose</span>
                         </li>
-                    </ul>
+                    </ul>                    
                     <ul class="main__widget_steps-displays">
-                        <li class="step-1"></li>
-                        <li class="step-2"></li>
-                        <li class="step-3"></li>                        
+                        <li class="display-1">
+                            <h5>
+                                <span>Please choose a carrier whom signal you want to enhance</span>
+                                <div class="widget-tooltip">
+                                    <i></i>
+                                    <div class="widget-tooltip__text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</div>
+                                </div>                                
+                            </h5>
+                            <div class="display-1__all-button">All networtks</div>
+                            <div class="display-1__specific-block">
+                                asasda
+                            </div>
+                            <div class="choose-specific__link">
+                                <a href="">Let me choose specific network</a>
+                            </div>                            
+                        </li>
+                        <li class="display-2">
+                            <h5>
+                                <span>Choose сoverage</span>
+                                <div class="widget-tooltip">
+                                    <i></i>
+                                    <div class="widget-tooltip__text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</div>
+                                </div>                                
+                            </h5>
+                            <ul class="display-2__сoverage-list clearfix">
+                                <li class="home selected">
+                                    <div class="display-2__сoverage_item-title">for home & small office</div>
+                                    <div class="display-2__сoverage_item-sub">less 40 m2</div>
+                                </li>
+                                <li class="large-office">
+                                    <div class="display-2__сoverage_item-title">for Large Office</div>
+                                    <div class="display-2__сoverage_item-sub">from 40 to 200 m2</div>
+                                </li>
+                                <li class="large-building">
+                                    <div class="display-2__сoverage_item-title">for large building </div>
+                                    <div class="display-2__сoverage_item-sub">upper 200 m2</div>
+                                </li>
+                                <li class="vehicless">
+                                    <div class="display-2__сoverage_item-title">vehicles & Boat</div>                                    
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="display-3">
+                            <h5>
+                                <span>Please choose a network whom signal you want to enhance</span>
+                                <div class="widget-tooltip">
+                                    <i></i>
+                                    <div class="widget-tooltip__text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</div>
+                                </div>                                
+                            </h5>
+                            <ul class="display-3__сoverage-list clearfix">
+                                <li class="home selected">
+                                    <div class="display-3__сoverage_item-title">Voice calls</div>
+                                </li>
+                                <li class="large-office">
+                                    <div class="display-3__сoverage_item-title">3G and 4G</div>                                    
+                                </li>
+                                <li class="large-building">
+                                    <div class="display-3__сoverage_item-title">Voice calls, 3G and 4G</div>
+                                </li>                                
+                            </ul>
+                        </li>
                     </ul>
+                    <div class="custom-solution__link">
+                        <a href="">Custom solution</a>
+                    </div>
                 </section>
+            </article>
+
+            <article class="index-whatis">
+                <h2>What is Mobile Repeaters?</h2>
+                <div class="index-whatis__infograph-1">
+                    <img src="assets/index-infographic-1.png" alt="">
+                </div>
+                <ul class="index-whatis__dobble_text clearfix">
+                    <li class="fl">Mobile Repeater offer a range of ready to go Mobile Phone Signal Booster kits that are know as Repeaters.<br><br>
+                        These devices are used for homes and buildings with bad inside phone reception. Our Mobile Repeaters Come with an outside antenna, all the cable you need, your Mobile Signal Booster and an inside antenne. </li>
+                    <li class="fr">After a quick install and speedy delivery all of your phone network troubles can be a thing of the past.<br><br>
+                        Overall Responses showed that the below percentage of people would consider changing or not revisiting the following places if they had bad phone signal:</li>
+                </ul>
+            </article>
+
+            <article class="index-statistic">
+                <section class="index-statistic__block">
+                    <ul class="index-statistic__block_list clearfix">
+                        <li class="orange">
+                            <div class="index-statistic__block_list_percent">87%</div>
+                            <div class="index-statistic__block_list_bar"></div>
+                            <div class="index-statistic__block_list_title">Hotel</div>
+                        </li>
+                        <li class="green">
+                            <div class="index-statistic__block_list_percent">76%</div>
+                            <div class="index-statistic__block_list_bar"></div>
+                            <div class="index-statistic__block_list_title">Office Building</div>
+                        </li>
+                        <li class="blue">
+                            <div class="index-statistic__block_list_percent">98%</div>
+                            <div class="index-statistic__block_list_bar"></div>
+                            <div class="index-statistic__block_list_title">Meeting Facility</div>
+                        </li>
+                        <li class="violet">
+                            <div class="index-statistic__block_list_percent">92%</div>
+                            <div class="index-statistic__block_list_bar"></div>
+                            <div class="index-statistic__block_list_title">Hospital</div>
+                        </li>
+                    </ul>
+                    <div class="index-statistic__block_text">Similar results carry across things like home rentals, cafes and so on. Want one you?<br/>Well your in the right place!</div>
+                    <a href="" class="index-statistic__block_button">Get repeater</a>
+                </section>
+            </article>
+            <article class="index-benefits">
+                <h2>Our Benefits</h2>
+                <ul class="index-benefits__list_top">
+                    <li class="fl">
+                        <div class="index-benefits__list_img">
+                            <img src="assets/benefits-1.svg" alt="">
+                        </div>
+                        <div class="index-benefits__list_title">Improved mobile signal strength</div>
+                        <div class="index-benefits__list_description">This increase in cellular reception will result in clearer phone call quality and fewer dropped calls</div>
+                    </li>
+                    <li class="fr">
+                        <div class="index-benefits__list_img">
+                            <img src="assets/benefits-2.svg" alt="">
+                        </div>
+                        <div class="index-benefits__list_title">Customized solutions</div>
+                        <div class="index-benefits__list_description">In addition to the retail products available on our website, our team of engineers can provide customized solutions for any application. </div>
+                    </li>
+                </ul>
+                <ul class="index-benefits__list_bottom">
+                    <li>
+                        <div class="index-benefits__list_img">
+                            <img src="assets/benefits-3.svg" alt="">
+                        </div>
+                        <div class="index-benefits__list_title">Easy install</div>
+                        <div class="index-benefits__list_description">Each kit contains everything needed and includes instructions that will guide you through the simple steps to install your repeater.</div>
+                    </li>
+                    <li>
+                        <div class="index-benefits__list_img">
+                            <img src="assets/benefits-4.svg" alt="">
+                        </div>
+                        <div class="index-benefits__list_title">Certified</div>
+                        <div class="index-benefits__list_description">Our boosters have been tested and certified on o2, Orange, 3G data networks, Three, Vodafone, T-mobile and hundreds of other GSM, 3G and LTE</div>
+                    </li>
+                    <li>
+                        <div class="index-benefits__list_img">
+                            <img src="assets/benefits-5.svg" alt="">
+                        </div>
+                        <div class="index-benefits__list_title">100% free support </div>
+                        <div class="index-benefits__list_description">We offer 100% free support with the purchase of any unit on our site.</div>
+                    </li>
+                </ul>
             </article>
         </main>
 
