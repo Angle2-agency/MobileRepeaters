@@ -380,6 +380,7 @@ main {
   color: #9b9b9b;
   position: relative;
   cursor: pointer;
+  display: none;
 }
 .main__widget_steps li .edit::after {
   content: "";
@@ -868,7 +869,7 @@ main {
 .index-testimonials {  
   height: 529px;
   background-image: linear-gradient(359deg, #1f77e4, #3b91fc);
-  overflow: hidden;
+  overflow: hidden;  
 }
 .index-testimonials h2 {
   margin: 78px 0 0 0;
@@ -894,7 +895,7 @@ main {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   margin: 0 10px;
   padding: 74px 28px 0 30px;
-  background: #fff url('quotes.png') no-repeat 30px 30px;
+  background: #fff url('quotes.svg') no-repeat 30px 30px;
 }
 .testimonials__slider_item-text {  
   font-size: 16px;
@@ -922,13 +923,27 @@ main {
 }
 .testimonials__slider .slick-prev {
   position: absolute;
-  left: -100px;
+  left: -28px;
   top: 40%;
+  width: 18px;
+  height: 18px;
+  border: none;
+  background: transparent url('ibs-arro-prev.svg') no-repeat center; 
+  font-size: 0;
+  outline: none;
+  cursor: pointer;
 }
 .testimonials__slider .slick-next {
   position: absolute;
-  right: -100px;
+  right: -28px;
   top: 40%;
+  width: 18px;
+  height: 18px;
+  border: none;
+  background: transparent url('ibs-arro-next.svg') no-repeat center; 
+  font-size: 0;
+  outline: none;
+  cursor: pointer;
 }
 .testimonials__slider .slick-dots {
   list-style: none;
@@ -951,6 +966,7 @@ main {
   padding: 0;
   margin: 0;
   line-height: 0;
+  outline: none;
 }
 .testimonials__slider .slick-dots li.slick-active button {
   background-color: #fff;
@@ -1039,4 +1055,140 @@ main {
   line-height: normal;
   letter-spacing: -0.3px;
   text-align: center;  
+}
+
+
+
+/* ==========================================================================
+   FOOTER classes
+   ========================================================================== */
+footer {
+  background-color: #4a4a4a;
+  height: 72px;
+}
+.footer__copyright {
+  float: left;  
+  font-size: 14px;
+  font-weight: 600;  
+  font-stretch: normal;
+  line-height: 72px;
+  letter-spacing: normal;
+  color: #b3b3b3;  
+}
+.footer__ask {
+  float: right;
+}
+.footer__ask-text {    
+  font-size: 16px;
+  font-weight: 600;  
+  font-stretch: normal;
+  line-height: 72px;
+  letter-spacing: normal;
+  color: rgba(255, 255, 255, 0.7);
+  float: left;
+  margin-right: 20px;
+}
+.footer__ask-button {
+  display: block;
+  width: 240px;
+  height: 48px;
+  border-radius: 1.9px;
+  background-color: #3b91fc;
+  font-size: 14px;
+  font-weight: bold;  
+  font-stretch: normal;
+  line-height: 48px;
+  letter-spacing: -0.2px;
+  text-align: center;
+  color: #ffffff;
+  text-transform: uppercase;
+  float: left;
+  margin-top: 12px;
+}
+.index-wiw__graphic {
+  list-style: none;
+  margin: 54px auto 0 auto;
+  padding: 0;
+  display: table;
+}
+.index-wiw__graphic li {
+  width: 235px;
+  float: left;
+  margin-right: 20px;
+}
+.index-wiw__graphic li:last-child {
+  margin-right: 0; 
+}
+.index-wiw__graphic li img {
+  width: 100%;
+}
+.index-wiw__cashback {
+  margin: 26px 0 60px 0;
+  text-align: center;
+}
+.index-wiw__cashback img {
+  width: 512px;
+  display: block;
+  margin: auto;
+}
+.index-wiw__cashback a {
+  width: 240px;
+  height: 48px;
+  margin-top: 16px;
+  border-radius: 1.9px;
+  background-color: #3b91fc;
+  display: inline-block;    
+  font-size: 14px;
+  font-weight: bold;  
+  font-stretch: normal;
+  line-height: 48px;
+  letter-spacing: -0.2px;
+  text-align: center;
+  color: #ffffff;
+}
+.display-1__specific-block {
+  display: none;
+}
+#index-top-slider {
+  width: 815px;
+  margin: 34px auto 0 auto;  
+}
+#index-top-slider .item {
+  padding: 2px 8px;
+}
+#index-top-slider .item a {
+  display: block;    
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);  
+}
+#index-top-slider .item a img {
+  width: 100%;
+}
+#index-top-slider .slick-prev {
+  display: block;
+  border: none;
+  outline: none;
+  background: transparent url('its-arro-prev.svg') no-repeat center;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: -40px;
+  font-size: 0;
+  cursor: pointer;
+}
+#index-top-slider .slick-next {
+  display: block;
+  border: none;
+  outline: none;
+  background: transparent url('its-arro-next.svg') no-repeat center;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%) rotate(180deg);
+  right: -40px;
+  font-size: 0;
+  cursor: pointer;
 }
