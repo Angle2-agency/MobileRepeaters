@@ -97,44 +97,155 @@
 	            	</div>
 	            </section>
 	            <section class="product__ref">Product Ref: MRE200</section>
-	            <article class="product__article clearfix">
+	            
+                <article class="product__article clearfix">
 	            	<section class="product__article_photos">
 	            		<div class="product__article_photos-slider">
-	            			<div>
+	            			<div class="item">
 	            				<img src="assets/product-item-photo-1.jpg" alt="">
 	            			</div>
-	            			<div>
+	            			<div class="item">
 	            				<img src="assets/product-item-photo-2.jpg" alt="">
 	            			</div>
-	            			<div>
+	            			<div class="item">
 	            				<img src="assets/product-item-photo-3.jpg" alt="">
 	            			</div>
-	            			<div>
+	            			<div class="item">
 	            				<img src="assets/product-item-photo-4.jpg" alt="">
 	            			</div>
-	            			<div>
+	            			<div class="item">
 	            				<img src="assets/product-item-photo-5.jpg" alt="">
 	            			</div>
 	            		</div>
 	            		<div class="product__article_photos-nav">
-	            			<div>
-	            				<img src="assets/product-item-photo-1.jpg" alt="">
+	            			<div class="item">                                
+                                <div class="item-box">
+                                    <div class="item-td">
+                                        <img src="assets/product-item-photo-1.jpg" alt="">
+                                    </div>                                    
+                                </div>	            				
 	            			</div>
-	            			<div>
-	            				<img src="assets/product-item-photo-2.jpg" alt="">
+	            			<div class="item">                                
+                                <div class="item-box">
+                                    <div class="item-td">
+                                        <img src="assets/product-item-photo-2.jpg" alt="">
+                                    </div>                                    
+                                </div>	            				
 	            			</div>
-	            			<div>
-	            				<img src="assets/product-item-photo-3.jpg" alt="">
+	            			<div class="item">                                
+                                <div class="item-box">
+                                    <div class="item-td">
+                                        <img src="assets/product-item-photo-3.jpg" alt="">
+                                    </div>                                    
+                                </div>	            				
 	            			</div>
-	            			<div>
-	            				<img src="assets/product-item-photo-4.jpg" alt="">
+	            			<div class="item">                                
+                                <div class="item-box">
+                                    <div class="item-td">
+                                        <img src="assets/product-item-photo-4.jpg" alt="">
+                                    </div>                                    
+                                </div>	            				
 	            			</div>
-	            			<div>
-	            				<img src="assets/product-item-photo-5.jpg" alt="">
+	            			<div class="item">                                
+                                <div class="item-box">
+                                    <div class="item-td">
+                                        <img src="assets/product-item-photo-5.jpg" alt="">
+                                    </div>                                    
+                                </div>	            				
 	            			</div>
 	            		</div>
+                        <script>
+                            $('.product__article_photos-slider').slick({
+                                slidesToShow: 1,
+                                slidesToScroll: 1,
+                                arrows: false,
+                                fade: true,
+                                asNavFor: '.product__article_photos-nav',
+                                infinite: false
+                            });
+                            $('.product__article_photos-nav').slick({
+                                slidesToShow: 3,
+                                slidesToScroll: 1,
+                                asNavFor: '.product__article_photos-slider',
+                                dots: false,
+                                centerMode: false,
+                                focusOnSelect: true,
+                                infinite: false
+                            });
+                        </script>
 	            	</section>
+                    <section class="product__article_additions">
+                        <h3>Additions</h3>
+                        <div class="product__article_additions-wrapper">
+                            <div class="product__article_additions-title">
+                                <span>Cable Upgrade</span>
+                                <div class="widget-tooltip">
+                                    <i></i>
+                                    <div class="widget-tooltip__text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</div>
+                                </div> 
+                            </div>
+                            <label class="product__article_additions-select">
+                                <select id="cable-upgrade-addon" title="">
+                                    <option value="">10 meters (included) (+£0.00)</option>
+                                    <option value="1203244852">Low-Loss 15m (+£40.00)</option>
+                                    <option value="1203244848">Low-Loss 20m (+£50.00)</option>
+                                    <option value="1203244824">Low-Loss 25m (+£60.00)</option>
+                                    <option value="1203244844">Low-Loss 30m (+£70.00)</option>
+                                    <option value="1203244840">Low-Loss 35m (+£80.00)</option>
+                                    <option value="1203244836">Low-Loss 40m (+£90.00)</option>
+                                    <option value="1203244832">Low-Loss 45m (+£100.00)</option>
+                                    <option value="1203244828">Low-Loss 50m (+£110.00)</option>
+                                </select>
+                            </label>
+                            <div class="product__article_additions-title">
+                                <span>Antenna Upgrade</span>
+                                <div class="widget-tooltip">
+                                    <i></i>
+                                    <div class="widget-tooltip__text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</div>
+                                </div> 
+                            </div>
+                            <div class="checkbox-custom">
+                                <label>                                    
+                                    <input type="checkbox" name="" id="">
+                                    <i class="controll"></i>
+                                    <span class="text">High Gain Yagi Antenna</span>
+                                    <span class="price">£12.00</span>
+                                </label>
+                            </div>
+                            <div class="checkbox-custom">
+                                <label>
+                                    <input type="checkbox" name="" id="">
+                                    <i class="controll"></i>
+                                    <span class="text">Lightning / Surge Protector</span>
+                                    <span class="price">£7.00</span>
+                                </label>
+                            </div>
+                            <div class="checkbox-custom">
+                                <label>
+                                    <input type="checkbox" name="" id="">
+                                    <i class="controll"></i>
+                                    <span class="text">Yagi Mounting Bracket</span>
+                                    <span class="price">£3.00</span>
+                                </label>
+                            </div>
+                            <div class="product__article_additions-title">
+                                <span>Antenna Upgrade</span>
+                                <div class="widget-tooltip">
+                                    <i></i>
+                                    <div class="widget-tooltip__text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</div>
+                                </div> 
+                            </div>
+                            <div class="product__article_additions-select">
+                                <select id="extended-warranty-addon" title="">
+                                    <option value="">Standard 1 Year Included (+£0.00)</option>
+                                    <option value="4426961924">2 Year Warranty (+£85.00)</option>
+                                    <option value="4426971268">3 Year Warranty (+£125.00)</option>
+                                </select>
+                            </div>
+                        </div>                        
+                    </section>                    
 	            </article>
+                <h1 class="clearfix">asd</h1>
 			</div>            
         </main>
 
