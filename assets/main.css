@@ -446,6 +446,17 @@ h2 {
   padding: 0 12px;    
   
 }
+#card .modal__main {
+  padding: 0;
+}
+#card .card__items {
+  width: 1000px;
+  max-height: 415px;  
+}
+.scrollbar-inner {
+ width: 1000px;
+  max-height: 415px;   
+}
 
 /* ==========================================================================
    HEADER, TOP SLIDER classes
@@ -2287,3 +2298,4 @@ footer {
 .product__descriptions_speciﬁcations-list #electrical .description {
   width: 250px;
 }
+
