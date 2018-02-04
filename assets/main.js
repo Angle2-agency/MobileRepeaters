@@ -49,4 +49,9 @@ $(document).ready(function() {
 		}
 		console.log(show);
 	});
+
+	$('.accessories').on('click', '.accessories__filter-switcher div', function(e){
+		$(this).toggleClass('list cards');
+		$('.accessories__collection').toggleClass('cadrs list');
+	});
 });
