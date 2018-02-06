@@ -3309,3 +3309,188 @@ i.on {
   text-align: center;
   color: #ffffff; 
 }
+.contacts h1 {
+  margin: 24px 0 32px 0;
+  padding: 0;  
+  font-size: 32px;
+  font-weight: 600;
+  font-stretch: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: left;
+  color: #2a4371;
+}
+.contacts__article {  
+  height: 548px;
+  border-radius: 2px;  
+  border: solid 1px #c6c6c6;
+  padding-right: 50%;
+  background: #ffffff url('bg-contacts.jpg') no-repeat top right / auto 100%;
+}
+.contacts__article_hint {
+  margin: 39px auto 0 auto;
+  width: 360px;    
+  font-size: 20px;
+  font-weight: normal;  
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  text-align: center;  
+}
+.contacts__article_phone {
+  margin-top: 22px;    
+  font-size: 24px;
+  font-weight: 600;  
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.4px;
+  text-align: center;
+  color: #f5a623;
+}
+.contacts__article_between {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 600;  
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  text-align: center;  
+}
+.contacts__article_andtext {
+  width: 360px;
+  margin: 22px auto 0 auto;  
+  font-size: 20px;
+  font-weight: normal;  
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  text-align: center;  
+}
+.contacts__article_country {
+  margin-top: 34px;
+}
+.contacts__article_country-title {
+  display: table;
+  margin: 0 auto;
+}
+.contacts__article_country-title_img {
+  width: 48px;
+  height: 48px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  margin-right: 16px;
+  overflow: hidden;  
+  text-align: center;
+  float: left;
+}
+.contacts__article_country-title_img.uk img {
+  position: relative;
+  height: 100%;
+  margin: auto;
+  left: -24px;
+} 
+.contacts__article_country-title_text {  
+  font-size: 20px;
+  font-weight: 600;  
+  font-stretch: normal;
+  line-height: 48px;
+  letter-spacing: -0.3px;  
+  float: left;
+}
+.contacts__article_country-adress {
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: normal;  
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  text-align: center;  
+}
+.contacts__more {
+  margin-top: 120px;
+  margin-left: 50px;
+}
+.contacts__more_country {
+  float: left;
+  margin-bottom: 96px;
+  overflow: hidden;
+}
+.contacts__more_country-title {
+  margin-bottom: 16px;
+}
+.contacts__more_country-title_img {
+  width: 48px;
+  height: 48px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  margin-right: 16px;
+  overflow: hidden;
+  text-align: center;
+  float: left;
+}
+.contacts__more_country-title_text {
+  font-size: 20px;
+  font-weight: 600;
+  font-stretch: normal;
+  line-height: 48px;
+  letter-spacing: -0.3px;
+  float: left;
+}
+.contacts__more_country-adress {    
+  font-size: 16px;
+  font-weight: normal;  
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  text-align: left;
+  margin-bottom: 13px;  
+}
+.contacts__more_country-link {
+  display: inline-block;  
+  font-size: 14px;
+  font-weight: 600;  
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.2px;
+  text-align: center;
+  color: #3b91fc;
+  text-transform: uppercase;
+}
+
+.contacts__more_country.australia,
+.contacts__more_country.germany {
+  width: 325px;
+}
+.contacts__more_country.south-africa,
+.contacts__more_country.spain {
+  width: 400px;
+}
+.contacts__more_country.australia img {
+  height: 100%;
+  position: relative;
+  left: -15px;
+}
+.contacts__more_country.south-africa img {
+  height: 100%;
+  position: relative;
+  left: -15px;
+}
+.contacts__more_country.usa img {
+  height: 100%;
+  position: relative;
+  left: -10px;
+}
+.contacts__more_country.germany img {
+  height: 100%;
+  position: relative;
+  left: -10px;
+}
+.contacts__more_country.spain img {
+  height: 100%;
+  position: relative;  
+}
+.contacts__more_country.france img {
+  height: 100%;
+  position: relative;  
+  left: -4px;
+}
