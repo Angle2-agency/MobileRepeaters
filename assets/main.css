@@ -1747,18 +1747,31 @@ footer {
 }
 #index-top-slider {
   width: 815px;
-  margin: 34px auto 0 auto;  
+  margin: 34px auto 0 auto;
+  text-align: center;  
 }
 #index-top-slider .item {
-  padding: 2px 8px;
+  padding: 2px 8px;  
 }
 #index-top-slider .item a {
   display: block;    
   background-color: #ffffff;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);  
+  height: 70px;
+  text-align: center;
+}
+#index-top-slider .item a::before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.05em;
 }
 #index-top-slider .item a img {
-  width: 100%;
+  max-width: 90%;
+  max-height: 90%;
+  vertical-align: middle;
+  display: inline-block;
 }
 #index-top-slider .slick-prev {
   display: block;
