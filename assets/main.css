@@ -2602,7 +2602,10 @@ footer {
 .return-delivery-img img {
   width: 100%;
 }
-.return-delivery h2 {
+.rte {
+  overflow: hidden;
+}
+.return-delivery .rte h2 {
   padding: 0;
   margin: 56px 0 32px 0;  
   font-size: 24px;
@@ -2613,27 +2616,28 @@ footer {
   text-align: center;
   color: #f5a623;
 }
-.return-delivery__text {
-  width: 760px;
+.return-delivery .rte table {  
   margin: auto;  
-  font-size: 18px;
-  font-weight: normal;  
-  font-stretch: normal;
+  font-size: 18px;  
   line-height: 1.78;
   letter-spacing: -0.3px;
   text-align: left;  
 }
-.return-delivery__list {
+.return-delivery .rte p {
+  padding: 0;
+  margin: 0;
+}
+.return-delivery .rte ul {
   list-style: none;
   margin: 40px auto;
-  padding: 0;
-  width: 760px;
+  padding: 0;  
+  overflow: hidden;
 }
-.return-delivery__list li {
+.return-delivery .rte li {
   float: left;
   margin-right: 68px;  
 }
-.return-delivery__list li h3 {  
+.return-delivery .rte h3 {  
   margin: 0;
   padding: 0;
   font-size: 20px;
@@ -2651,7 +2655,7 @@ footer {
   line-height: 1;
   letter-spacing: -0.3px;    
 }
-.return-delivery__list li b {
+.return-delivery .rte b {
   display: block;
   margin-top: 15px;
   font-size: 18px;
@@ -3369,6 +3373,10 @@ i.on {
   letter-spacing: -0.3px;
   text-align: center;  
 }
+.contacts__article_between p {
+  padding: 0px;
+  margin: 0;
+}
 .contacts__article_andtext {
   width: 360px;
   margin: 22px auto 0 auto;  
@@ -3441,6 +3449,10 @@ i.on {
   text-align: center;
   float: left;
 }
+.contacts__more_country-title_img img {
+  width: 100%;
+  height: 100%;
+}
 .contacts__more_country-title_text {
   font-size: 20px;
   font-weight: 600;
@@ -3470,13 +3482,15 @@ i.on {
   text-transform: uppercase;
 }
 
-.contacts__more_country.australia,
-.contacts__more_country.germany {
+.contacts__more_country:first-child,
+.contacts__more_country:nth-child(3n+4){
   width: 325px;
 }
-.contacts__more_country.south-africa,
-.contacts__more_country.spain {
+.contacts__more_country:nth-child(3n+2){
   width: 400px;
+}
+.contacts__more_country:nth-child(3n+3){
+  width: 225px;
 }
 .contacts__more_country.australia img {
   height: 100%;
