@@ -2291,7 +2291,12 @@ footer {
 .product__article_options {
   margin-top: 30px;
 }
-.product__article_options .fl p {
+.product__article_options .fl ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.product__article_options .fl ul li {
   margin: 0;
   padding: 0 0 13px 0;  
   font-size: 18px;
