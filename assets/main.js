@@ -54,4 +54,11 @@ $(document).ready(function() {
 		$(this).toggleClass('list cards');
 		$('.accessories__collection').toggleClass('cadrs list');
 	});
+
+	$('main.technical-support').on('click', '.technical-support__list h3', function(e){
+		$('.technical-support__list .item__content').slideUp(150);
+		$('.technical-support__list h3').removeClass('show');
+		$(this).closest('.technical-support__list_item').addClass('show');
+		$(this).closest('.technical-support__list_item').find('.item__content').slideDown(150);
+	});
 });
