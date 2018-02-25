@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="486" height="84" viewBox="0 0 486 84">
+    <defs>
+        <linearGradient id="a" x1="50%" x2="50%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#C2F232"/>
+            <stop offset="100%" stop-color="#7ED321"/>
+        </linearGradient>
+        <linearGradient id="b" x1="50%" x2="50%" y1="3.053%" y2="87.308%">
+            <stop offset="0%" stop-color="#EAEAEA"/>
+            <stop offset="100%" stop-color="#F0F0F0"/>
+        </linearGradient>
+        <linearGradient id="e" x1="50%" x2="50%" y1=".905%" y2="98.9%">
+            <stop offset="0%" stop-color="#EEF4FF"/>
+            <stop offset="100%" stop-color="#FFF"/>
+        </linearGradient>
+        <path id="d" d="M178.063 12H305.05a4.8 4.8 0 0 1 4.74 4.045l8.926 56a4.8 4.8 0 0 1-4.74 5.555H173.6a4.8 4.8 0 0 1-4.785-5.181l4.463-56A4.8 4.8 0 0 1 178.063 12z"/>
+        <filter id="c" width="118.7%" height="142.7%" x="-9.3%" y="-15.2%" filterUnits="objectBoundingBox">
+            <feOffset dy="4" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="4"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+        </filter>
+        <path id="f" d="M215.996 25.6h54.685a1.6 1.6 0 0 1 1.588 1.405l2.65 21.6a1.6 1.6 0 0 1-1.587 1.795H215.2a1.6 1.6 0 0 1-1.599-1.659l.796-21.6a1.6 1.6 0 0 1 1.6-1.541z"/>
+        <filter id="g" width="104.9%" height="112.1%" x="-2.4%" y="-6%" filterUnits="objectBoundingBox">
+            <feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="1"/>
+            <feOffset dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"/>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"/>
+            <feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.211362092 0"/>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <path fill="url(#a)" d="M405.6 44.8h15.2v28h-15.2zM427.2 32.8h15.2v40h-15.2zM448.8 18.4H464v53.714h-15.2zM470.4.8h15.2v71.429h-15.2zM0 44h15.2v28.224H0z"/>
+        <path fill="url(#b)" d="M21.6 32h15.2v40.32H21.6zM43.2 18.4h15.2v54.144H43.2zM64.8 0H80v72H64.8z"/>
+        <path fill="#4191FF" d="M178.065 17.6h127.07a4.8 4.8 0 0 1 4.738 4.028c5.477 33.595 8.449 50.4 8.915 50.414-.063 2.34-.2 4.611-.41 6.812A4.8 4.8 0 0 1 313.6 83.2H174.27a4.8 4.8 0 0 1-4.636-3.553c-.675-2.507-.94-4.663-.796-6.469a3497.288 3497.288 0 0 1 4.449-51.23 4.8 4.8 0 0 1 4.778-4.348z"/>
+        <use fill="#000" filter="url(#c)" xlink:href="#d"/>
+        <use fill="url(#e)" xlink:href="#d"/>
+        <use fill="#0C46A2" xlink:href="#f"/>
+        <use fill="#000" filter="url(#g)" xlink:href="#f"/>
+        <path fill="#8CBDFF" d="M125.435 34.858V24.8l15.332 15.331-15.332 15.332v-9.685H94.4v-10.92h31.035zM375.835 34.858V24.8l15.332 15.331-15.332 15.332v-9.685h-29.251v-10.92h29.251z" opacity=".254"/>
+        <text fill="#59A2F6" font-family="ToxigenesisRg-Bold, Toxigenesis" font-size="6.789" font-weight="bold" letter-spacing="-.109">
+            <tspan x="226.086" y="38.649">Mobile</tspan>
+        </text>
+        <text fill="#FFF" font-family="ToxigenesisRg-Bold, Toxigenesis" font-size="6.789" font-weight="bold" letter-spacing="-.109">
+            <tspan x="227.988" y="45.154">Repeater</tspan>
+        </text>
+        <path fill="#7ED321" d="M254.716 37.851h1.698V35.59l-1.698 1.506zM257.545 37.851h1.697v-4.525l-1.697 1.53zM260.374 37.851h1.697v-6.788l-1.697 1.567zM263.202 37.851h1.697V28.8l-1.697 1.53z"/>
+    </g>
+</svg>
