@@ -1,0 +1,49 @@
+<main class="blogs">
+  <div class="wrapper">
+    <section class="blogs__nav clearfix">
+      <h1>{{ blog.title }}</h1>
+      <ul class="blogs__nav_filter clearfix">
+        <!--li class="blogs__nav_filter-swicher">
+          <div class="checkbox-switcher">
+            <label>                                    
+              <input type="checkbox" name="" id="">
+              <div class="controll">
+                <i class="off">off</i>
+                <i class="on">on</i>
+              </div>
+              <span class="text">Popular in top</span>                                    
+            </label>
+          </div>
+        </li-->
+        <li class="blogs__nav_filter-input">
+          <form method="get" action="/search">
+            <input type="hidden" name="type" value="article" />
+            <input type="search" name="q" placeholder="Search" />   
+          </form>          
+        </li>
+      </ul>
+    </section>
+    {% if blog.articles.size > 0 %}
+    	<section class="blogs__list">
+          {% for article in blog.articles %}          
+          	<div class="blogs__list_item">
+              {% if article.image %}
+              	<div class="blogs__list_item-img">
+                  <a href="{{ article.url }}">
+                  	{{ article | img_url: '240x', scale: 2 | img_tag: article.title, 'article__grid-image' }}
+                  </a>                	
+              	</div>
+              {% endif %}              
+              <div class="blogs__list_item-description">
+                <h3>{{ article.title }}</h3>
+                <div class="blogs__list_item-description_user"><time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time> | by {{ article.author }}</div>
+                <div class="blogs__list_item-description_text">{{ article.content | strip_html | truncatewords: 75 }}</div>
+                <div class="blogs__list_item-description_text mobile">{{ article.content | strip_html | truncatewords: 35 }}</div>
+                <a href="{{ article.url }}" class="blogs__list_item-description_more">Read more</a>
+              </div>
+            </div>
+          {% endfor %}          
+    	</section>
+    {% endif %}        
+  </div>            
+</main>

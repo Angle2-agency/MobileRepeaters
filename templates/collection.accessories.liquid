@@ -1,0 +1,111 @@
+<main class="accessories">
+  <div class="wrapper">
+    <ul class="breadcrumb clearfix">
+      <li>
+        <a href="/">Main</a>
+      </li>                    
+      <li>
+        <span>Accessories</span>
+      </li>
+    </ul>
+    <h2>{{collection.title}}</h2>
+    <section class="accessories__top-text">
+      {{ collection.description }}
+    </section>                
+    <ul class="accessories__filter clearfix">
+      <li class="accessories__filter_title">Sort by</li>
+      <li class="accessories__filter_select-box">
+        <label class="accessories__filter-select">
+          <select id="accessories-filter" title="">            
+            <option value="best-selling" selected>Best Selling</option>
+            <option value="title-descending">Alphabetically, Z-A</option>
+            <option value="price-ascending">Price, low to high</option>
+            <option value="price-descending">Price, high to low</option>
+          </select>
+          <script>
+            if(window.location.search){
+              var selected = window.location.search.split('?sort_by=')[1];
+              $('#accessories-filter').val(selected);
+            }
+            $('#accessories-filter').change(function(e){  	
+              window.location.search = '?sort_by='+$(this).val();
+            });
+          </script>
+        </label>
+      </li>
+      <li class="accessories__filter-switcher">
+        <div class="list">
+          <i></i>
+        </div>
+      </li>
+    </ul>
+
+    <article class="accessories__collection cards">
+      <!-- ================ CARDS START ===================== -->
+      {% for product in collection.products %}
+      	<section class="accessories__cards_item">
+        <div class="accessories__cards_item-img">
+          <a href="{{ product.url | within: collection }}">
+            <img src="{{ product | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" />
+          </a>
+          <div class="accessories__cards_item-params">
+            <div class="td">
+              {% include 'product-collection-info' with product %}
+            </div>            					
+          </div>
+        </div>
+          <div class="accessories__cards_item-descktop">
+          	<div class="accessories__cards_item-title">
+              {{ product.title }}
+              {% if product.available %}
+              	<div class="product-mobile__instok">In Stock </div>
+              {% else %}
+              	<div class="product-mobile__instok" style="color:#9b9b9b;">On order</div>        
+              {% endif %}
+            </div>
+              <div class="accessories__cards_item-params-mobile">
+                <label>Options</label>
+                {% include 'product-collection-info' with product %}
+              </div>
+            <div class="accessories__cards_item-price-block">
+            	<div class="accessories__cards_item-oldprice">{{ product.compare_at_price | money }}</div>
+            	<div class="accessories__cards_item-price">{{ product.price | money }}</div>
+            </div>
+            <div class="accessories__cards_item-details">
+            	<a href="{{ product.url | within: collection }}">More details</a>
+            </div>
+            
+          </div>                  
+      </section>
+      {% endfor %}      
+      <!-- ================ CARDS END ===================== -->
+
+      <!-- ================ LIST START ===================== -->
+      {% for product in collection.products %}
+      <section class="accessories__list_item">
+        <div class="accessories__list_item-img">
+          <a href="{{ product.url | within: collection }}">
+            <img src="{{ product | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" />
+          </a>      
+          {% if product.available %}
+          	<div class="product-mobile__instok">In Stock </div>
+          {% else %}
+          	<div class="product-mobile__instok" style="color:#9b9b9b;">On order</div>        
+          {% endif %}
+        </div>
+        <div class="accessories__list_item-title">{{ product.title }}</div>
+        <div class="accessories__list_item-params">
+          <div class="title">Options</div>            					
+          {% include 'product-collection-info' with product %}
+        </div>
+        <div class="accessories__list_item-info">
+          <div class="accessories__list_item-oldprice">{{ product.compare_at_price | money }}</div>
+          <div class="accessories__list_item-price">{{ product.price | money }}</div>
+          <a href="{{ product.url | within: collection }}" class="accessories__list_item-details">More details</a>	
+        </div>            			
+      </section>
+      {% endfor %}      						
+      <!-- ================ LIST END ===================== -->
+    </article>
+  </div>
+</main>

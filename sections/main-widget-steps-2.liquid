@@ -1,0 +1,158 @@
+{% if template == 'index' %}
+<h5>
+    <span>{{ section.settings.text }}</span>
+    <div class="widget-tooltip">
+        <i></i>
+        <div class="widget-tooltip__text">{{ section.settings.tooltip }}</div>
+    </div>                                
+</h5>
+<ul class="display-2__сoverage-list clearfix">
+    <li class="home" data-tag="{{section.settings.for_home_small_office | capitalize }}">
+        <div class="display-2__сoverage_item-title">for home & small office</div>
+        <div class="display-2__сoverage_item-sub">less 40 m2</div>
+    </li>
+    <li class="large-office" data-tag="{{section.settings.for_large_office | capitalize }}">
+        <div class="display-2__сoverage_item-title">for Large Office</div>
+        <div class="display-2__сoverage_item-sub">from 40 to 200 m2</div>
+    </li>
+    <li class="large-building" data-tag="{{section.settings.for_large_building | capitalize }}">
+        <div class="display-2__сoverage_item-title">for large building </div>
+        <div class="display-2__сoverage_item-sub">upper 200 m2</div>
+    </li>
+    <li class="vehicless" data-tag="{{section.settings.vehicles_boat | capitalize }}">
+        <div class="display-2__сoverage_item-title">vehicles & Boat</div>                                    
+    </li>
+</ul>
+
+<script type="text/javascript">
+    $('#shopify-section-main-widget-steps-2').on('click', '.display-2__сoverage-list li[data-tag]', function(e){
+        $('#shopify-section-main-widget-steps-2 .display-2__сoverage-list li[data-tag]').removeClass('selected');
+        $(this).addClass('selected');
+        var tag = $(this).attr('data-tag');
+      	var text;
+      	if(tag == '{{section.settings.for_home_small_office | capitalize }}'){
+           text = '{{'for home & small office' | capitalize }}';
+        }else if(tag == '{{section.settings.for_large_office | capitalize }}'){
+           text = '{{'for Large Office' | capitalize }}';
+        }else if(tag == '{{section.settings.for_large_building | capitalize }}'){
+           text = '{{'for large building' | capitalize }}';
+        }else if(tag == '{{section.settings.vehicles_boat | capitalize }}'){
+           text = '{{'vehicles & Boat' | capitalize }}';
+        }
+        $('.main__widget_steps .step-2 .edit').html(text).show();
+      	$('.main__widget_steps-mobile_edit .step-2 .edit').html(text).addClass('show');
+        $('.main__widget_body').toggleClass('step-2 step-3');
+        widgetLink.сoverage = tag.toLowerCase().replace(/ /g, "-");
+        var cookie = {
+            title : tag,
+            tag : tag.toLowerCase().replace(/ /g, "-")
+        }
+        SetCookie('widgetCoverage', JSON.stringify(cookie));
+    });
+</script>
+
+{% else if template == 'collection' %}
+    <span></span>
+    <section class="modal" id="edit-coverage">
+        <div class="modal__body">
+            <div class="modal__header">
+                <i class="close"></i>
+                <h2>Coverage Required</h2>
+            </div>
+            <div class="modal__main">
+                <ul class="edit-coverage__list clearfix">
+                    <li class="home" data-tag="{{section.settings.for_home_small_office | downcase }}">
+                        <div class="edit-coverage__list_item-title">for home &amp; small office</div>
+                        <div class="edit-coverage__list_item-sub">less 40 m2</div>
+                    </li>
+                    <li class="large-office" data-tag="{{section.settings.for_large_office | downcase }}">
+                        <div class="edit-coverage__list_item-title">for Large Office</div>
+                        <div class="edit-coverage__list_item-sub">from 40 to 200 m2</div>
+                    </li>
+                    <li class="large-building" data-tag="{{section.settings.for_large_building | downcase }}">
+                        <div class="edit-coverage__list_item-title">for large building </div>
+                        <div class="edit-coverage__list_item-sub">upper 200 m2</div>
+                    </li>
+                    <li class="vehicless" data-tag="{{section.settings.vehicles_boat | downcase }}">
+                        <div class="edit-coverage__list_item-title">vehicles &amp; Boat</div>                                    
+                    </li>
+                </ul>
+            </div>
+            <div class="modal__footer">
+                <a href="" class="modal__footer_save">Save</a>
+            </div>
+        </div>
+    </section>
+    <script>
+        $('.edit-coverage__list li[data-tag="'+widgetLink.сoverage+'"]').addClass('selected');
+        $('.recommend__edit-steps .coverage').click(function(e) {
+            $('#edit-coverage').fadeIn(150);
+        });
+        $('.edit-coverage__list li[data-tag]').click(function(e) {
+            $('.edit-coverage__list li[data-tag]').removeClass('selected');
+            $(this).addClass('selected');
+            var tag = $(this).attr('data-tag');
+            widgetLink.сoverage = tag;
+        });
+        $('#edit-coverage .modal__footer_save').click(function(e) {
+            var href = '/collections/'+widgetLink.collection+'/'+widgetLink.сoverage.toLowerCase().replace(/ /g, "-")+'+'+widgetLink.purpose.toLowerCase().replace(/ /g, "-")+'?sort_by=price-ascending';
+            $(this).attr('href', href);
+        });
+    </script>    
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Main widget Coverage",
+    "settings": [
+        {
+            "type" : "header",
+            "content" : "Coverage Tags"            
+        },
+        {
+            "type" : "text",
+            "id" : "text",
+            "label" : "Coverage Text"
+        },
+        {
+            "type" : "text",
+            "id" : "tooltip",
+            "label" : "Coverage Tooltip Text"
+        },
+        {
+            "type" : "paragraph",
+            "content" : "Specify the tag parameter for each type of coverage"
+        },
+        {
+            "type" : "text",
+            "id" : "for_home_small_office",
+            "label" : "FOR HOME & SMALL OFFICE",            
+            "info" : "Tag name"            
+        },
+        {
+            "type" : "text",
+            "id" : "for_large_office",
+            "label" : "FOR LARGE OFFICE",            
+            "info" : "Tag name"            
+        },
+        {
+            "type" : "text",
+            "id" : "for_large_building",
+            "label" : "FOR LARGE BUILDING",            
+            "info" : "Tag name"            
+        },
+        {
+            "type" : "text",
+            "id" : "vehicles_boat",
+            "label" : "VEHICLES & BOAT",            
+            "info" : "Tag name"            
+        }
+    ]        
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,153 @@
+{% if template == 'index' %}
+    <h5>
+        <span>{{ section.settings.text }}</span>
+        <div class="widget-tooltip">
+            <i></i>
+            <div class="widget-tooltip__text">{{ section.settings.tooltip }}</div>
+        </div>                                
+    </h5>
+    <ul class="display-3__сoverage-list clearfix">
+        <li class="home" data-tag="{{section.settings.voice_calls | capitalize }}">
+            <div class="display-3__сoverage_item-title">Voice calls</div>
+        </li>
+        <li class="large-office" data-tag="{{section.settings.g_g | capitalize }}">
+            <div class="display-3__сoverage_item-title">3G and 4G</div>                                    
+        </li>
+        <li class="large-building" data-tag="{{section.settings.voice_calls_g_g | capitalize }}">
+            <div class="display-3__сoverage_item-title">Voice calls, 3G and 4G</div>
+        </li>                                
+    </ul>
+    <!--div class="display-3__сoverage_item-submit">
+        <a href="" class="display-3__сoverage_item-button">Choose self install</a>
+        <div class="display-3__сoverage_item-submit-text">If you didn’t find right options look at our custom solutions.</div>    
+    </div--> 
+
+    <script type="text/javascript">
+        $('#shopify-section-main-widget-steps-3').on('click', '.display-3__сoverage-list li[data-tag]', function(e){        
+            var tag = $(this).attr('data-tag');
+            SetCookie('widgetPurpose', tag);
+          	var text;
+            if(tag == '{{section.settings.voice_calls | capitalize }}'){
+               text = '{{'Voice calls' | capitalize }}';
+            }else if(tag == '{{section.settings.g_g | capitalize }}'){
+               text = '{{'3G and 4G' | capitalize }}';
+            }else if(tag == '{{section.settings.voice_calls_g_g | capitalize }}'){
+               text = '{{'Voice calls, 3G and 4G' | capitalize }}';
+            }
+            $('.main__widget_steps .step-3 .edit').html(text).show();
+          	$('.main__widget_steps-mobile_edit .step-3 .edit').html(text).addClass('show');
+            $(this).closest('ul').find('li').removeClass('selected');
+            $(this).addClass('selected');
+            $('.display-3__сoverage_item-submit').show();        
+            widgetLink.purpose = tag.toLowerCase().replace(/ /g, "-");
+            var cookie = {
+                title : tag,
+                tag : tag.toLowerCase().replace(/ /g, "-")
+            }
+            SetCookie('widgetPurpose', JSON.stringify(cookie));
+            var href = '/collections/'+widgetLink.collection+'/'+widgetLink.сoverage+'+'+widgetLink.purpose+'?sort_by=price-ascending';
+          	window.location.href = href;
+            //$('.display-3__сoverage_item-button').attr('href', href);
+        });
+    </script>
+{% else if template == 'collection' %}
+    <span></span>
+
+    <section class="modal" id="edit-requiredfor">
+            <div class="modal__body">
+                <div class="modal__header">
+                    <i class="close"></i>
+                    <h2>Required For</h2>
+                </div>
+                <div class="modal__main">
+                    <ul class="edit-requiredfor__сoverage-list clearfix">
+                        <li class="home" data-tag="{{section.settings.voice_calls | downcase }}">
+                            <div class="edit-requiredfor__сoverage_item-title">Voice calls</div>
+                        </li>
+                        <li class="large-office" data-tag="{{section.settings.g_g | downcase }}">
+                            <div class="edit-requiredfor__сoverage_item-title">3G and 4G</div>                                    
+                        </li>
+                        <li class="large-building" data-tag="{{section.settings.voice_calls_g_g | downcase }}">
+                            <div class="edit-requiredfor__сoverage_item-title">Voice calls, 3G and 4G</div>
+                        </li>                                
+                    </ul>
+                </div>
+                <div class="modal__footer">
+                    <a href="" class="modal__footer_save">Save</a>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            $('.recommend__edit-steps .purpose').click(function(e) {
+                $('#edit-requiredfor').fadeIn(150);
+            });
+            $('.edit-requiredfor__сoverage-list li[data-tag="'+widgetLink.purpose+'"]').addClass('selected');
+            $('.edit-requiredfor__сoverage-list li[data-tag]').click(function(e) {
+                $('.edit-requiredfor__сoverage-list li[data-tag]').removeClass('selected');
+                $(this).addClass('selected');
+                var tag = $(this).attr('data-tag');
+                widgetLink.purpose = tag.toLowerCase().replace(/ /g, "-");
+                var cookie = {
+                    title : tag,
+                    tag : tag.toLowerCase().replace(/ /g, "-")
+                }
+                SetCookie('widgetCoverage', JSON.stringify(cookie));
+            });
+            $('#edit-requiredfor .modal__footer_save').click(function(e) {
+                var href = '/collections/'+widgetLink.collection+'/'+widgetLink.сoverage.toLowerCase().replace(/ /g, "-")+'+'+widgetLink.purpose.toLowerCase().replace(/ /g, "-")+'?sort_by=price-ascending';
+                $(this).attr('href', href);
+            });
+        </script>
+{% endif %}
+
+
+{% schema %}
+  {
+    "name": "Main widget Purpose",
+    "settings": [
+        {
+            "type" : "header",
+            "content" : "Purpose Tags"            
+        },
+        {
+            "type" : "text",
+            "id" : "text",
+            "label" : "Purpose Text"
+        },
+        {
+            "type" : "text",
+            "id" : "tooltip",
+            "label" : "Purpose Tooltip Text"
+        },
+        {
+            "type" : "paragraph",
+            "content" : "Specify a tag parameter for each target type"
+        },
+        {
+            "type" : "text",
+            "id" : "voice_calls",
+            "label" : "VOICE CALLS",            
+            "info" : "Tag name"            
+        },
+        {
+            "type" : "text",
+            "id" : "g_g",
+            "label" : "3G AND 4G",            
+            "info" : "Tag name"            
+        },
+        {
+            "type" : "text",
+            "id" : "voice_calls_g_g",
+            "label" : "VOICE CALLS, 3G AND 4G",            
+            "info" : "Tag name"            
+        }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

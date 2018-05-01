@@ -1,0 +1,19 @@
+<ul class="breadcrumb clearfix">
+  {% if template == 'article' %}
+  	<li>
+      {{ blog.title | link_to: blog.url }}
+    </li>                    
+    <li>
+      <span>{{ article.title }}</span>
+    </li>
+  {% endif %}
+  
+  {% if template == 'product' %}
+  	<li>
+      {{ 'Main' | link_to: '/' }}
+    </li>                    
+    <li>
+      <span>{{ product.title }}</span>
+    </li>
+  {% endif %}
+</ul>

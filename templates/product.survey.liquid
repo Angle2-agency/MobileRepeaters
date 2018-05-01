@@ -1,0 +1,93 @@
+<main class="survey">
+  <div class="wrapper">    
+    <section class="product__title clearfix">
+      <div class="">
+        <div class="product__title_back">
+          {{ 'its-arro-prev.svg' | asset_url | img_tag }}
+        </div>
+        <h1>{{ product.title }}</h1>
+        {% if product.available %}
+        <div class="product__title_instok">In Stock </div>
+        {% endif %}
+      </div>                                       
+    </section>
+    <section class="product__ref">Product Ref: {{ product.variants[0].sku }}</section>
+  </div>
+  {% for image in product.images %}
+  	{% if forloop.first == true %}
+  		{% assign imageSurvey = image | img_url: '2560x' %}        
+    {% endif %}
+  {% endfor %}
+  <section class="survey__article" style="background-image: url('{{imageSurvey}}')">
+    <div class="wrapper">
+      <div class="survey__article_description">
+        <h2 style="background-image: url('{{imageSurvey}}')">Survey Report on Mobile Signal</h2>
+        <div class="survey__article_text">Mobile signal solutions have a team of engineers for professional installation for larger buildings. Usually Hotels offices and commercial buildings within the UK.</div>
+      </div>
+      <div class="survey__article_info">
+        <div class="product__article_add">
+          <div class="product__article_add-sub">Sub - Total:</div>
+          <div class="product__article_add-total">{{product.price | money}}</div>
+          <div class="product__article_add-button">ADD TO CART</div>
+          <a href="" class="product__article_add-help">NEED HELP?</a>
+        </div>
+      </div>
+    </div>                
+  </section>            
+  <section class="survey__description">
+    <div class="wrapper">
+      <div class="rte">
+      	{{ product.description }}
+      </div>      
+    </div>                
+  </section>            
+</main>
+
+<script>
+  
+  $('.product__title_back').click(function(e) {
+    window.history.back();
+  });
+/* ===========================================================================
+                                  Add to card
+  ============================================================================== */
+
+  function setCard(post){
+    $.ajax({
+      url: '/cart/update.js',
+      type : 'post',
+      dataType : 'json',      
+      data : {
+        updates: post
+      },
+      success: function(data){        
+        updateCard();        
+      }
+    });
+  }
+
+  
+
+  
+
+  $('.product__article_add-button').click(function(e) {
+      var id = {{product.variants[0].id}};
+      var qty = $('#product-qty').val();
+      var post = {};
+      $('#option-addon select').each(function(index, el) {
+        if($(this).val()){
+          post[$(this).val()] = 1          
+        }
+      });
+      $('#option-addon input[type="checkbox"]:checked').each(function(index, el) {        
+        if($(this).val()){
+          post[$(this).val()] = 1          
+        }
+      });      
+      post[id] = Number(qty);      
+      setCard(post);
+
+  });
+
+  $('.card__list_item-remove').click(removeItemCard);
+</script>

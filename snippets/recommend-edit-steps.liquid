@@ -1,0 +1,25 @@
+{{ section['main-widget-steps-1'].settings.tooltip }}
+
+<ul class="recommend__edit-steps clearfix">
+  <li class="network">
+    <span>
+      {% if collection.title == 'Repeaters' %}
+      All Networks
+      {% else %}
+      {{collection.title}}
+      {% endif %}
+    </span>
+  </li>
+  <li class="coverage">
+    <span></span>
+  </li>
+  <li class="purpose">
+    <span>Voice calls, 3G and 4G</span>
+  </li>
+</ul>
+<script>
+  var coverage = GetCookie('widgetCoverage');
+  var purpose = GetCookie('widgetPurpose');
+  $('.recommend__edit-steps .coverage span').html(coverage);
+  $('.recommend__edit-steps .purpose span').html(purpose);
+</script>

@@ -1,0 +1,152 @@
+<main class="custom-solution">
+  <div class="custom-solution-top">
+    <div class="wrapper">
+      <ul class="breadcrumb clearfix">
+        <li>
+          <a href="">Main</a>
+        </li>                    
+        <li>
+          <span>Custom Solution</span>
+        </li>
+      </ul>
+      <h2>{{ page.title }}</h2>
+      <div class="rte">
+          {{ page.content }}
+      </div>      
+      <div style="margin:0 auto;" class="pxFormGenerator" id="BMD5gpXaKxEYLSQuV3fIlA"></div>
+      <!--section class="custom-solution__form clearfix">
+        <div class="clearfix">
+          <div class="custom-solution__form_block fl">
+            <div class="custom-solution__form_block-title">Email Address</div>
+            <input type="text" name="" placeholder="Email Address">
+          </div>
+          <div class="custom-solution__form_block fr">
+            <div class="custom-solution__form_block-title">Phone Number</div>
+            <input type="tel" name="" placeholder="XXX-XXX-XXXX">
+          </div>
+          <div class="custom-solution__form_block fl">
+            <div class="custom-solution__form_block-title">Messages</div>
+            <textarea placeholder="That we will get in touch in some amount of time"></textarea>
+          </div>
+          <div class="custom-solution__form_block fr file">          
+            <div class="file-placeholder">Our team can give you an estimate free of charge if you attach plans</div>
+            <label class="file-label">
+              Attach file .pdf
+              <input type="file" name="" id="form-file">
+            </label>
+            <div class="file-value" id="form-file-value">
+              FileName… .pdf
+            </div>
+            <div class="file-value-clear" id="form-file-clear"></div>
+          </div>    
+        </div>
+
+        <div class="custom-solution__form_submit">
+          <input type="submit" value="Send" />
+        </div>
+      </section-->    
+    </div>  
+    </div>
+  <section class="custom-solution__survey">
+    <div class="custom-solution__survey_text">CUSTOM SIGNAL BOOSTER SOLUTIONS FOR COMMERCIAL BUILDINGS</div>
+    <a href="{{all_products['survey-report'].url}}" class="custom-solution__survey_link">Goes to book a survey</a>
+  </section>
+  <div class="wrapper">
+    <article class="index-whatis">
+      <h2>What is Mobile Repeaters?</h2>
+      <div class="index-whatis__infograph-1">
+        {{'index-infographic-1.png' | asset_url | img_tag}}  
+      </div>
+      <ul class="index-whatis__dobble_text clearfix">
+        <li class="fl">Mobile Repeater offer a range of ready to go Mobile Phone Signal Booster kits that are know as Repeaters.<br><br>
+          These devices are used for homes and buildings with bad inside phone reception. Our Mobile Repeaters Come with an outside antenna, all the cable you need, your Mobile Signal Booster and an inside antenne. </li>
+        <li class="fr">After a quick install and speedy delivery all of your phone network troubles can be a thing of the past.<br><br>
+          Overall Responses showed that the below percentage of people would consider changing or not revisiting the following places if they had bad phone signal:</li>
+      </ul>
+    </article>                
+  </div>
+  <article class="index-statistic">
+    <section class="index-statistic__block">
+      <ul class="index-statistic__block_list clearfix">
+        <li class="orange">
+          <div class="index-statistic__block_list_percent">87%</div>
+          <div class="index-statistic__block_list_bar"></div>
+          <div class="index-statistic__block_list_title">Hotel</div>
+        </li>
+        <li class="green">
+          <div class="index-statistic__block_list_percent">76%</div>
+          <div class="index-statistic__block_list_bar"></div>
+          <div class="index-statistic__block_list_title">Office Building</div>
+        </li>
+        <li class="blue">
+          <div class="index-statistic__block_list_percent">98%</div>
+          <div class="index-statistic__block_list_bar"></div>
+          <div class="index-statistic__block_list_title">Meeting Facility</div>
+        </li>
+        <li class="violet">
+          <div class="index-statistic__block_list_percent">92%</div>
+          <div class="index-statistic__block_list_bar"></div>
+          <div class="index-statistic__block_list_title">Hospital</div>
+        </li>
+      </ul>
+      <div class="index-statistic__block_text">Similar results carry across things like home rentals, cafes and so on. Want one you?<br>Well your in the right place!</div>
+      <a href="" class="index-statistic__block_button">Get repeater</a>
+    </section>
+  </article>
+  {% section 'testimonials-slider' %}    
+  <div class="wrapper">
+    <section class="custom-solution__seminars">
+      <h2>We go to the official mobile networks seminars</h2>
+      <ul class="custom-solution__seminars_table">
+        <li>
+          {{'solution-1.png' | asset_url | img_tag}} 
+        </li>
+        <li>
+          {{'solution-2.png' | asset_url | img_tag}} 
+        </li>
+        <li>
+          {{'solution-3.png' | asset_url | img_tag}} 
+        </li>
+        <li>
+          {{'solution-4.png' | asset_url | img_tag}} 
+        </li>
+        <li>
+          {{'solution-5.png' | asset_url | img_tag}} 
+        </li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<script>
+  $('#form-file').change(function(e) {    
+    if($(window).width() > 1000){
+      console.log($(this).val());
+      var fileName = $(this).val().split('/').pop().split('\\').pop();
+      var l = fileName.split('.').length - 1;
+      var ext = fileName.split('.')[l];
+      if(ext != 'pdf' || ext != 'PDF'){
+        $('#form-file-value').html('<span style="color:red;">Incorrect file...</span>');
+    	$('#form-file-value').show();
+        return false;
+      }
+      if(fileName.length > 13){
+      	var name = fileName.slice(0, 8)+'... .'+fileName.split('.')[1];
+      }else{
+      	var name = fileName;
+      }      
+    }else{
+      var fileName = $(this).val().split('/').pop().split('\\').pop();
+      var name = fileName;
+    }
+    $('#form-file-value').html(name);
+    $('#form-file-value, #form-file-clear').show();    
+  });
+  $('#form-file-clear').click(function(e) {
+    $('#form-file').val('');
+    $('#form-file-value').html('');
+    $('#form-file-value, #form-file-clear').hide();
+  });
+</script>
+
+

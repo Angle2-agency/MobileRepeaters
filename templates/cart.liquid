@@ -1,0 +1,174 @@
+<main class="card-mobile">
+  <div class="wrapper">
+    <h1>
+      <span>Cart</span>
+      <div class="cart__back">Back</div>
+    </h1>
+    {% if cart.item_count > 0 %}
+    <ul class="card__list">
+      {% for item in cart.items %}
+      	<li class="card__list_item clearfix" data-id="{{item.id}}">
+          <div class="remove">
+            <i></i>
+          </div>
+          <div class="card__list_item-photo-price">
+            <div class="photo">
+            	<img src="{{ item.image | img_url: '56x56' }}" alt="" />
+            </div>
+            <div class="price">{{ item.price | money }}</div>
+          </div>
+          <div class="card__list_item-title-quantity">
+            <div class="title">
+              <a href="{{item.url}}">{{item.title}}</a>
+            </div>
+            <div class="quantity">
+              {% if item.quantity == 1 %}
+              	<i data-event="minus" class="minus disabled"></i>
+              {% else %}
+              	<i data-event="minus" class="minus"></i>
+              {% endif %}
+              	<input type="number" readonly value="{{item.quantity}}" />
+              	<i data-event="plus" class="plus"></i>
+            </div>
+          </div>
+		</li>
+      {% endfor %}      
+    </ul>
+    <div class="card-form">
+      <form action="/cart" method="post" id="checkout-form-mobile">
+        <div class="card__footer_total">Sub - Total:</div>
+        <div class="card__footer_price">{{ cart.total_price | money }}</div>
+        <div class="card__footer_iagree">
+          <div class="checkbox-custom">
+            <label>                                    
+              <input type="checkbox" name="terms" id="">
+              <i class="controll"></i>
+              <span class="text">I agree with the</span>
+              <a href="/pages/terms-and-conditions" class="link" target="_blank">Terms and Conditions</a>
+            </label>
+          </div>
+        </div>                
+        <input type="submit" class="card__footer_checkout" name="checkout" value="GO TO CHECKOUT" />
+        <a href="{{ collections.accessories.url }}" class="card__footer_accessories">SHOP ACCESSORIES</a>
+      </form>
+    </div>
+    <div class="card__footer_delivery">
+      <div class="card__footer_delivery-switcher">Delivery Info</div>
+      <div class="card__footer_delivery-content">
+        {% section 'card-delivery-info' %}
+      </div>
+    </div>
+    {% else %}
+    	<h2>You have no items in your shopping cart.</h2>
+    {% endif %}
+  </div>            
+</main>
+<script>
+  $('.card-mobile .cart__back').click(function(e) {
+    window.history.back();
+  });
+$('.card-mobile').on('click', '.card__footer_delivery-switcher', function(e){
+  var show = $(this).hasClass('show');
+  if(!show){
+    $(this).addClass('show');
+    $(this).closest('.card__footer_delivery').find('.card__footer_delivery-content').show();
+  }else{
+    $(this).removeClass('show');
+    $(this).closest('.card__footer_delivery').find('.card__footer_delivery-content').hide();
+  }  
+});
+  $('.card-mobile').on('click', '.quantity i', function(e){
+		var ev = $(this).attr('data-event');
+		var val = $(this).closest('.quantity').find('input').val();
+		if(ev == 'plus'){
+			val++;
+			$(this).closest('.quantity').find('input').val(val);
+			if(val > 1){
+				$(this).closest('.quantity').find('.minus').removeClass('disabled');
+			}
+		}else if(ev == 'minus'){
+			if(val == 1)return false;
+			val--;
+			$(this).closest('.quantity').find('input').val(val);
+			if(val == 1)$(this).addClass('disabled');
+		}
+		changeItemCard($(this));
+	});
+  $('body').on('click', '.card-mobile .remove i', function(e){
+		var id = $(this).closest('.card__list_item').attr('data-id');
+		var item = {};
+		item[id] = 0;
+		removeItemCard(item);
+	});  
+  $('#checkout-form-mobile').submit(function(e) {    	
+        var terms = $(this).find('input[name="terms"]').is(':checked');
+        if(!terms){
+            $('.card__footer_iagree').addClass('error')
+            e.preventDefault();
+        }            
+    });
+    $('input[name="terms"]').change(function() {
+        if($(this).is(':checked')){
+            $('.card__footer_iagree').removeClass('error');
+        }
+    });
+    function removeItemCard(item){
+        $.ajax({
+            url: '/cart/update.js',
+                type : 'post',
+                dataType : 'json',      
+                data : {
+                    updates : item
+                },
+                success: function(data){        
+                    updateCard();        
+                }
+            });
+    }
+
+    function changeItemCard(item){
+        var id = item.closest('.card__list_item').attr('data-id');
+        var quantity = item.closest('.card__list_item').find('.quantity input').val();
+        var updates = {};
+        updates[id] = quantity;
+      	console.log(id);
+      console.log(quantity);
+      console.log(updates);        
+
+        $.ajax({
+            url: '/cart/update.js',
+                type : 'post',
+                dataType : 'json',      
+                data : {
+                    updates : updates
+                },
+                success: function(data){        
+                    updateCard();
+                }
+            });
+    }    
+
+    function updateCard(){
+        $.ajax({
+          url: '/cart.js',
+          type : 'get',
+          dataType : 'json',
+          success: function(data){
+            if(data.item_count == 0)window.location.reload();
+            $('.header__nav_params-card').html(data.item_count > 0 ? data.item_count : 'Empty cart').attr('data-count', data.item_count);
+            $('.card-mobile .card__list').html('');
+              for(var i in data.items){
+                var format = '{{shop.money_format}}'.replace('{amount}', '').replace('{}', '') + ' '+(data.items[i].price / 100).toFixed(2);                
+                var item = '<li class="card__list_item clearfix" data-id="'+data.items[i].id+'"><div class="remove"><i></i></div><div class="card__list_item-photo-price">'+
+                '<div class="photo"><img src="'+data.items[i].image+'" alt="" /></div><div class="price">'+format+'</div></div>'+
+                '<div class="card__list_item-title-quantity"><div class="title"><a href="'+data.items[i].url+'">'+data.items[i].title+'</a></div>'+
+                '<div class="quantity"><i data-event="minus" class="minus'+(data.items[i].quantity == 1 ? ' disabled':'')+'"></i>'+              
+                '<input type="number" readonly value="'+data.items[i].quantity+'" /><i data-event="plus" class="plus"></i></div></div></li>';
+                $('.card-mobile .card__list').append(item);
+              }
+              var totalFormat = '{{shop.money_format}}'.replace('{amount}', '').replace('{}', '') + ' '+(data.total_price / 100).toFixed(2);
+              $('.card-mobile .card__footer_price').html(totalFormat);              
+          }
+        });
+      };
+</script>

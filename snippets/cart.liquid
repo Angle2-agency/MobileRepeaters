@@ -1,0 +1,154 @@
+<div class="header__nav_params-card" data-count="{{cart.item_count}}">
+  {% if cart.item_count == 0 %}
+    Empty cart
+  {% else %}
+    {{cart.item_count}}
+  {% endif %}
+</div>
+
+<!-- -------------------------- CARD --------------------------- -->
+<section class="modal" id="card">
+    <div class="modal__body">
+        <div class="modal__header">
+            <i class="close"></i>
+            <h2>Cart</h2>
+        </div>
+        <div class="modal__main">          
+            <div class="scrollbar-inner clearfix">
+                <ul class="card__list">
+                    {% for item in cart.items %}
+                        <li class="card__list_item" data-id="{{item.id}}">
+                            <div class="card__list_item-img">
+                                <div class="card__list_item-img-wrapper">
+                                    <img src="{{ item.image | img_url: '80x80' }}" alt="" />                                    
+                                </div>
+                            </div>
+                            <div class="card__list_item-title">
+                                <a href="{{item.url}}">{{item.title}}</a>
+                            </div>
+                            <div class="card__list_item-options">
+                                <span></span>
+                            </div>
+                            <div class="card__list_item-quantity">
+                                {% if item.quantity == 1 %}
+                                <i data-event="minus" class="minus disabled"></i>
+                                {% else %}
+                                <i data-event="minus" class="minus"></i>
+                                {% endif %}
+                                <input type="number" readonly value="{{item.quantity}}" />
+                                <i data-event="plus" class="plus"></i>
+                            </div>
+                            <div class="card__list_item-price">{{ item.price | money }}</div>
+                            <div class="card__list_item-remove">
+                                <i></i>
+                            </div>
+                        </li>
+                    {% endfor %}                    
+                </ul>
+            </div>
+        </div>
+        <div class="modal__footer">
+            <form action="/cart" method="post" id="checkout-form">
+                <div class="card__footer_total">Sub - Total:</div>
+                <div class="card__footer_price">{{ cart.total_price | money }}</div>
+                <div class="card__footer_iagree">
+                    <div class="checkbox-custom">
+                        <label>                                    
+                            <input type="checkbox" name="terms" id="">
+                            <i class="controll"></i>
+                            <span class="text">I agree with the</span>
+                            <a href="/pages/terms-and-conditions" class="link" target="_blank">Terms and Conditions</a>
+                        </label>
+                    </div>
+                </div>                
+                <input type="submit" class="card__footer_checkout" name="checkout" value="GO TO CHECKOUT" />
+                <a href="{{ collections.accessories.url }}" class="card__footer_accessories">SHOP ACCESSORIES</a>
+            </form>
+            <div class="card__footer_delivery">
+                <div class="card__footer_delivery-switcher">Delivery Info</div>
+                <div class="card__footer_delivery-content">
+                    {% section 'card-delivery-info' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $('.scrollbar-inner').scrollbar();
+    $('#checkout-form').submit(function(e) {
+        var terms = $(this).find('input[name="terms"]').is(':checked');
+        if(!terms){
+            $('.card__footer_iagree').addClass('error')
+            event.preventDefault();
+        }            
+    });
+    $('input[name="terms"]').change(function() {
+        if($(this).is(':checked')){
+            $('.card__footer_iagree').removeClass('error');
+        }
+    });
+    function removeItemCard(item){
+        $.ajax({
+            url: '/cart/update.js',
+                type : 'post',
+                dataType : 'json',      
+                data : {
+                    updates : item
+                },
+                success: function(data){        
+                    updateCard();        
+                }
+            });
+    }
+
+    function changeItemCard(item){
+        var id = item.closest('.card__list_item').attr('data-id');
+        var quantity = item.closest('.card__list_item').find('.card__list_item-quantity input').val();
+        var updates = {};
+        updates[id] = quantity;
+
+        $.ajax({
+            url: '/cart/update.js',
+                type : 'post',
+                dataType : 'json',      
+                data : {
+                    updates : updates
+                },
+                success: function(data){        
+                    updateCard();        
+                }
+            });
+    }    
+
+    function updateCard(){
+        $.ajax({
+          url: '/cart.js',
+          type : 'get',
+          dataType : 'json',
+          success: function(data){
+            $('.header__nav_params-card').html(data.item_count > 0 ? data.item_count : 'Empty cart').attr('data-count', data.item_count);
+            $('#card .card__list').html('');
+              for(var i in data.items){
+                var format = '{{shop.money_format}}'.replace('{amount}', '').replace('{}', '') + ' '+(data.items[i].price / 100).toFixed(2);                
+                var item = '<li data-id="'+data.items[i].id+'" class="card__list_item"><div class="card__list_item-img"><div class="card__list_item-img-wrapper">'+
+                '<img src="'+data.items[i].image+'" alt=""></div></div>'+
+                '<div class="card__list_item-title"><a href="'+data.items[i].url+'">'+data.items[i].title+'</a></div>'+
+                '<div class="card__list_item-options"><span></span></div>'+
+                '<div class="card__list_item-quantity"><i data-event="minus" class="minus'+(data.items[i].quantity == 1 ? ' disabled':'')+'"></i><input type="number" readonly value="'+data.items[i].quantity+'"><i data-event="plus" class="plus"></i></div>'+
+                '<div class="card__list_item-price">'+format+'</div>'+
+                '<div class="card__list_item-remove"><i></i></div>';
+                $('#card .card__list').append(item);
+              }
+              var totalFormat = '{{shop.money_format}}'.replace('{amount}', '').replace('{}', '') + ' '+(data.total_price / 100).toFixed(2);
+              $('#card .card__footer_price').html(totalFormat)
+
+              if($('#card').is(':hidden')){
+                $('.header__nav_params-card').click();
+              }else if($('#card').is(':visible') && data.item_count == 0){
+                $('#card .close').click();
+              }
+            console.log(data);
+          }
+        });
+      };
+</script>

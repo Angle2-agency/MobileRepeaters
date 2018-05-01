@@ -1,0 +1,30 @@
+<main class="blog-article">
+  <div class="wrapper">
+    {% include 'breadcrumb' %}    
+    <section class="blog-article__title clearfix">
+      <div class="product__title_back">
+        <a href="{{blog.url}}">
+          {{'its-arro-prev.svg' | asset_url | img_tag}}        	
+        </a>        
+      </div>
+      <h1>{{ article.title }}</h1>
+      <div class="blogs__list_item-description_user"><time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time> | by {{ article.author }}</div>
+    </section>
+    <section class="blog-article__content rte">
+      {{ article.content }}
+    </section>    
+      <section class="blog-article__pagination clearfix">
+        {% if blog.next_article %}
+        	<a href="{{blog.next_article}}" class="blog-article__pagination_prev">Previous post</a>                    
+        {% endif %}        
+        {% if blog.previous_article %}
+        	<a href="{{blog.previous_article}}" class="blog-article__pagination_next">Next post</a>
+  		{% endif %}                  
+        {% if article.tags contains "repeater" %}
+        	<a href="/products/survey-report" class="blog-article__pagination_survey">BOOK A SURVEY</a>
+        {% else if article.tags contains "survey" %}
+        	<a href="/products/survey-report" class="blog-article__pagination_survey">BOOK A SURVEY</a>
+        {% endif %}        
+      </section>    
+  </div>            
+</main>

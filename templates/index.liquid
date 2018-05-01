@@ -1,0 +1,229 @@
+<main>
+    <article class="main__widget">
+        <div class="main__widget_title">Signal Boosters for all building sizes - we have the product to fit your network</div>
+        <section class="main__widget_body step-1">
+            <h2>Choose your Mobile Repeater</h2>
+            <ul class="main__widget_steps clearfix">
+                <li class="step-1">
+                    <div class="table">
+                        <div class="td">
+                            <i>1</i>                                    
+                        </div>      
+                        <div class="td">                                    
+                            <span>Network</span>
+                            <div class="edit"></div>
+                        </div>
+                    </div>                            
+                </li>
+                <li class="step-2">
+                    <div class="table">
+                        <div class="td">
+                            <i>2</i>
+                        </div>      
+                        <div class="td">                                    
+                            <span>Coverage</span>
+                            <div class="edit"></div>
+                        </div>
+                    </div>                            
+                </li>
+                <li class="step-3">
+                    <div class="table">
+                        <div class="td">
+                            <i>3</i>
+                        </div>      
+                        <div class="td">                                    
+                            <span>Purpose</span>
+                            <div class="edit"></div>
+                        </div>
+                    </div>                            
+                </li>
+            </ul>
+          	<ul class="main__widget_steps-mobile_edit clearfix">
+              <li class="step-1">
+              	<div class="edit"></div>
+              </li>
+              <li class="step-2">
+              	<div class="edit"></div>
+              </li>
+              <li class="step-3">
+              	<div class="edit"></div>
+              </li>
+          	</ul>
+            <ul class="main__widget_steps-displays">
+                <li class="display-1">
+                    {% section 'main-widget-steps-1' %}
+                </li>
+                <li class="display-2">
+                    {% section 'main-widget-steps-2' %}
+                </li>
+                <li class="display-3">
+                    {% section 'main-widget-steps-3' %}                                               
+                </li>
+            </ul>
+            <script type="text/javascript">
+                $('.main__widget').on('click', '.main__widget_steps .edit, .main__widget_steps-mobile_edit .edit', function(e){
+                    var step = $(this).closest('li').attr('class');
+                    $('.main__widget_body').attr('class', 'main__widget_body '+step);
+                    console.log($(this));
+                });                
+            </script>
+
+            <div class="custom-solution__link">
+                <a href="{{ pages.custom-solution.url }}">Custom solution</a>
+            </div>
+        </section>
+    </article>
+
+    <article class="index-whatis">
+        <h2>What is Mobile Repeaters?</h2>
+        <div class="index-whatis__infograph-1">
+        	{{'index-infographic-1.png' | asset_url | img_tag}}            
+        </div>
+        <ul class="index-whatis__dobble_text clearfix">
+            <li class="fl">Mobile Repeater offer a range of ready to go Mobile Phone Signal Booster kits that are know as Repeaters.<br><br>
+                These devices are used for homes and buildings with bad inside phone reception. Our Mobile Repeaters Come with an outside antenna, all the cable you need, your Mobile Signal Booster and an inside antenne. </li>
+            <li class="fr">After a quick install and speedy delivery all of your phone network troubles can be a thing of the past.<br><br>
+                Overall Responses showed that the below percentage of people would consider changing or not revisiting the following places if they had bad phone signal:</li>
+        </ul>
+    </article>
+
+    <article class="index-statistic">
+        <section class="index-statistic__block">
+            <ul class="index-statistic__block_list clearfix">
+                <li class="orange">
+                    <div class="index-statistic__block_list_percent">87%</div>
+                    <div class="index-statistic__block_list_bar"></div>
+                    <div class="index-statistic__block_list_title">Hotel</div>
+                </li>
+                <li class="green">
+                    <div class="index-statistic__block_list_percent">76%</div>
+                    <div class="index-statistic__block_list_bar"></div>
+                    <div class="index-statistic__block_list_title">Office Building</div>
+                </li>
+                <li class="blue">
+                    <div class="index-statistic__block_list_percent">98%</div>
+                    <div class="index-statistic__block_list_bar"></div>
+                    <div class="index-statistic__block_list_title">Meeting Facility</div>
+                </li>
+                <li class="violet">
+                    <div class="index-statistic__block_list_percent">92%</div>
+                    <div class="index-statistic__block_list_bar"></div>
+                    <div class="index-statistic__block_list_title">Hospital</div>
+                </li>
+            </ul>
+            <div class="index-statistic__block_text">Similar results carry across things like home rentals, cafes and so on. Want one you?<br/>Well your in the right place!</div>
+            <a href="" class="index-statistic__block_button">Get repeater</a>
+        </section>
+    </article>
+    <article class="index-benefits">
+        <h2>Our Benefits</h2>
+        <ul class="index-benefits__list_top">
+            <li class="fl">
+                <div class="index-benefits__list_img">
+                	{{'benefits-1.svg' | asset_url | img_tag}}                    
+                </div>
+                <div class="index-benefits__list_title">Improved mobile signal strength</div>
+                <div class="index-benefits__list_description">This increase in cellular reception will result in clearer phone call quality and fewer dropped calls</div>
+            </li>
+            <li class="fr">
+                <div class="index-benefits__list_img">
+                	{{'benefits-2.svg' | asset_url | img_tag}}                    
+                </div>
+                <div class="index-benefits__list_title">Customized solutions</div>
+                <div class="index-benefits__list_description">In addition to the retail products available on our website, our team of engineers can provide customized solutions for any application. </div>
+            </li>
+        </ul>
+        <ul class="index-benefits__list_bottom">
+            <li>
+                <div class="index-benefits__list_img">
+                	{{'benefits-3.svg' | asset_url | img_tag}}                    
+                </div>
+                <div class="index-benefits__list_title">Easy install</div>
+                <div class="index-benefits__list_description">Each kit contains everything needed and includes instructions that will guide you through the simple steps to install your repeater.</div>
+            </li>
+            <li>
+                <div class="index-benefits__list_img">
+                	{{'benefits-4.svg' | asset_url | img_tag}}                    
+                </div>
+                <div class="index-benefits__list_title">Certified</div>
+                <div class="index-benefits__list_description">Our boosters have been tested and certified on o2, Orange, 3G data networks, Three, Vodafone, T-mobile and hundreds of other GSM, 3G and LTE</div>
+            </li>
+            <li>
+                <div class="index-benefits__list_img">
+                	{{'benefits-5.svg' | asset_url | img_tag}}                    
+                </div>
+                <div class="index-benefits__list_title">100% free support </div>
+                <div class="index-benefits__list_description">We offer 100% free support with the purchase of any unit on our site.</div>
+            </li>
+        </ul>
+    </article>
+  	{% section 'testimonials-slider' %}    
+    <article class="index-wiw">
+        <h2>Will it work for me?</h2>
+        <ul class="index-wiw__steps">
+            <li>
+               <div class="index-wiw__steps_title">Step 1</div> 
+               <div class="index-wiw__steps_img">
+					{{'img-wiwfm-step-1.svg' | asset_url | img_tag}}                   
+               </div>
+                <div class="index-wiw__steps_description">
+                    Go outside your house with your mobile phone.                            
+                </div>
+            </li>
+            <li>
+               <div class="index-wiw__steps_title">Step 2</div> 
+               <div class="index-wiw__steps_img">
+					{{'img-wiwfm-step-2.svg' | asset_url | img_tag}}                   
+               </div>
+               <div class="index-wiw__steps_description">
+                    Make sure you are not connected to WIFI.
+                    <span>Switch off WIFI on your phone</span>
+                </div>
+            </li>
+            <li>
+               <div class="index-wiw__steps_title">Step 3</div> 
+               <div class="index-wiw__steps_img">
+					{{'img-wiwfm-step-3.svg' | asset_url | img_tag}}                   
+               </div>
+               <div class="index-wiw__steps_description">
+                    Take a note of the signal bars and the symbol in the status bar of your phone.
+                    <span>Check results below</span>
+                </div>
+            </li>
+        </ul>
+        <section class="index-wiw__iycs">
+            If you can see 1 or more signal bars, a mobile repeater will work for you
+        </section>
+        <div class="index-wiw__graphic clearfix">
+            <div class="index-wiw__graphic_item">
+            	{{'signal-results-1.png' | asset_url | img_tag}}                
+            </div>
+            <div class="index-wiw__graphic_item">
+            	{{'signal-results-2.png' | asset_url | img_tag}}                
+            </div>
+            <div class="index-wiw__graphic_item">
+            	{{'signal-results-3.png' | asset_url | img_tag}}                
+            </div>
+            <div class="index-wiw__graphic_item">
+            	{{'signal-results-4.png' | asset_url | img_tag}}                
+            </div>                    
+        </div>
+      <script>
+        if($(window).width() < 1000){
+        	$('.index-wiw__graphic').slick({
+                infinite: true,
+                arrows: false,
+                centerMode: true,              
+                centerPadding: '44px',              
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots : true
+              });
+        }
+      </script>
+        <section class="index-wiw__cashback">
+        	{{'index-cashback.png' | asset_url | img_tag}}
+            <a href="" id="get-repeater-but">Get repeater</a>
+        </section>
+    </article>
+</main>

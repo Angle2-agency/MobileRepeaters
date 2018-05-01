@@ -1,0 +1,67 @@
+{% if section.blocks.size > 0 %}
+<article class="index-testimonials">
+  <h2>Testimonials</h2>
+  <div class="testimonials__slider">
+    {% for block in section.blocks %}
+    <div class="testimonials__slider_item">
+      <div class="testimonials__slider_item-block">
+        <div class="testimonials__slider_item-text">{{ block.settings.message }}</div>
+        <div class="testimonials__slider_item-name">{{ block.settings.name }}</div>
+        <div class="testimonials__slider_item-date">{{ block.settings.date }}</div>
+      </div>                        
+    </div>		
+    {% endfor %}
+  </div>
+</article>
+
+<script>
+  $('.testimonials__slider').slick({
+    infinite: true,              
+    slidesToShow: ($(window).width() > 1000 ? 2 : 1),
+    slidesToScroll: ($(window).width() > 1000 ? 2 : 1),
+    dots : true
+  });
+</script>
+{% endif %}
+
+
+{% schema %}
+  {
+    "name": "Reviews list",
+    "settings": [
+      {
+        "type" : "header",
+        "content" : "Reviews list"
+      }      
+    ],
+    "blocks": [
+        {
+            "type": "adress",
+            "name": "Review Block",
+            "settings": [                
+                {
+                  "type": "richtext",
+                  "id": "message",
+                  "label": "Message text"
+                },
+                {
+                  "type": "text",
+                  "id": "name",
+                  "label": "Name"
+                },
+                {
+                  "type": "text",
+                  "id": "date",
+                  "label": "Date"
+                }                
+            ]
+        }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

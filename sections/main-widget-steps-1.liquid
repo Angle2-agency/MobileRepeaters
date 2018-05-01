@@ -1,0 +1,226 @@
+{% if template == 'index' %}
+    <h5>
+        <span>{{ section.settings.text }}</span>
+        <div class="widget-tooltip">
+            <i></i>
+            <div class="widget-tooltip__text">{{ section.settings.tooltip }}</div>
+        </div>                                
+    </h5>
+    <div class="display-1__all-button" id="widget-all-networtks">All networtks</div>        
+        <div class="display-1__specific-block" id="index-top-slider">
+            {% if section.blocks.size > 0 %}
+                {% for block in section.blocks %}
+          			{% if section.blocks.size == 1 %}
+                    	<div class="item" style="float: none;margin:auto;">
+					{% else %}
+                          <div class="item">
+					{% endif %}
+                        <span data-collection="{{block.settings.brand_coll}}">
+                            <img src="{{block.settings.logo | img_url}}" alt="">                        
+                        </span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                You have not added any brands.
+            {% endif %}                           
+        </div>        
+    <div class="choose-specific__link" data-type="specific">
+        <a href="javascript:void(0)">Let me choose specific network</a>
+    </div>
+    <div class="choose-specific__link" data-type="all" style="display: none;">
+        <a href="javascript:void(0)">Let me choose all networks</a>
+    </div>
+
+    <script>    
+        var collection = {};
+        {% for collection in collections %}
+            collection["{{collection.handle}}"] = "{{collection.title}}";
+        {% endfor %}
+		var slider;
+        $('.main__widget').on('click', '.choose-specific__link', function(e){
+            var type = $(this).attr('data-type');
+			console.log(type);
+            if(type == 'specific'){
+                $('[data-type="specific"], .display-1__all-button').hide();
+                $('[data-type="all"]').show();                    
+                if(!slider){
+                       if($(window).width() > 1000){
+                          $('.display-1__specific-block').show(0, function(e){
+                          slider = $('#index-top-slider').slick({
+                              infinite: true,
+                              slidesToShow: 5,
+                              slidesToScroll: 1                                    
+                          });
+                      	});
+                       }else{
+                       	$('.display-1__specific-block').show();
+                       }                    
+                }
+                       $('.display-1__specific-block').show();
+            }else{
+                $('[data-type="all"], .display-1__specific-block').hide();
+                $('[data-type="specific"], .display-1__all-button').show();
+            }
+        });
+        $('.main__widget').on('click', '#widget-all-networtks', function(e){
+            $('#index-top-slider span[data-collection]').removeClass('selected');
+            $(this).addClass('selected');
+            $('.main__widget_steps .step-1 .edit').html('All Networks').show();
+			if($(window).width() < 1000){
+            	$('.main__widget_steps-mobile_edit .step-1 .edit').html('All Networks').addClass('show');
+				$('.main__widget_steps-mobile_edit').show();           
+			}			
+            $('.main__widget_body').toggleClass('step-1 step-2');
+            widgetLink.collection = 'repeaters';
+        });
+        $('#index-top-slider').on('click', 'span[data-collection]', function(e){
+            $('#widget-all-networtks').removeClass('selected');
+            $(this).addClass('selected');
+            var ch = $(this).attr('data-collection');        
+            $('.main__widget_steps .step-1 .edit').html(collection[ch]).show();
+      		if($(window).width() < 1000){
+            	$('.main__widget_steps-mobile_edit .step-1 .edit').html(collection[ch]).addClass('show');
+      			$('.main__widget_steps-mobile_edit').show();
+            }      		
+            $('.main__widget_body').toggleClass('step-1 step-2');
+            widgetLink.collection = ch;
+        });
+      	/*
+      	$(window).resize(function(e){
+          console.log($(window).width());
+          if($(window).width() >= 1000){
+            if(!slider){                       
+              $('.display-1__specific-block').show(0, function(e){
+                slider = $('#index-top-slider').slick({
+                  infinite: true,
+                  slidesToShow: 5,
+                  slidesToScroll: 1                                    
+                });
+              });
+            }
+          }else{
+            if(slider){
+            	slider.slick('unslick');
+              	slider = null;
+            }          	
+          }
+        });
+      */
+    </script>
+
+    {% else if template == 'collection' %}        
+        <span>
+          {% if collection.title == 'Repeaters' %}
+          All Networks
+          {% else %}
+          {{collection.title}}
+          {% endif %}
+        </span>
+
+        <section class="modal" id="edit-carrier">
+            <div class="modal__body">
+                <div class="modal__header">
+                    <i class="close"></i>
+                    <h2>Edit Carrier</h2>
+                </div>
+                <div class="modal__main">
+                    <div class="edit-carrier__all-networks{%if collection.title == 'Repeaters'%} selected{%endif%}">All networks</div>
+                    <div class="edit-carrier__all-text">or choose specific network</div>
+                    {% if section.blocks.size > 0 %}
+                        <ul class="edit-carrier__list clearfix">
+                            {% for block in section.blocks %}
+                                {% assign collectionTitle = collection.handle %}
+                                <li data-title="{{collectionTitle}}" data-sett="{{block.settings.brand_coll}}" class="{%if collectionTitle == block.settings.brand_coll%} selected{%endif%}" data-collection="{{block.settings.brand_coll}}">
+                                    <img src="{{block.settings.logo | img_url}}" alt="">
+                                </li>                                
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        You have not added any brands.
+                    {% endif %}                    
+                </div>
+                <div class="modal__footer">
+                    <a href="" class="modal__footer_save">Save</a>
+                </div>
+            </div>
+        </section>
+
+        <script type="text/javascript">
+            widgetLink.collection = '{{collection.handle}}';
+            var collection = {};
+            {% for collection in collections %}
+                collection['{{collection.handle}}'] = "{{collection.title}}";
+            {% endfor %}
+            $('.recommend__edit-steps .network').click(function(e) {
+                $('#edit-carrier').fadeIn(150);
+            });            
+            $('.edit-carrier__all-networks, .edit-carrier__list li').click(function(e) {
+                $('.edit-carrier__all-networks, .recommend__edit-steps li').removeClass('selected');
+                $(this).addClass('selected');                
+                if($(this).hasClass('edit-carrier__all-networks')){
+                    widgetLink.collection = 'repeaters';
+                }else{                    
+                    var ch = $(this).attr('data-collection');
+                    widgetLink.collection = ch;
+                }
+            });
+            $('#edit-carrier .modal__footer_save').click(function(e) {
+                var href = '/collections/'+widgetLink.collection+'/'+widgetLink.сoverage.toLowerCase().replace(/ /g, "-")+'+'+widgetLink.purpose.toLowerCase().replace(/ /g, "-")+'?sort_by=price-ascending';
+                $(this).attr('href', href);
+            });
+        </script>
+    {% endif %}
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Main Widget Brands",
+    "settings": [
+        {
+            "type" : "header",
+            "content" : "Brands items"            
+        },
+        {
+            "type" : "paragraph",
+            "content" : "Add and customize the brand, then click on the \"LET ME CHOOSE SPECIFIC NETWORK\" button to see the result"
+        },
+        {
+            "type" : "text",
+            "id" : "text",
+            "label" : "Network Text"
+        },
+        {
+            "type" : "text",
+            "id" : "tooltip",
+            "label" : "Network Tooltip Text"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "brand",
+            "name": "Brand",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "logo",
+                    "label": "Brand Logo"
+                },
+                {
+                    "type" : "collection",
+                    "id" : "brand_coll",
+                    "label" : "Select collection"                    
+                }
+            ]
+        }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

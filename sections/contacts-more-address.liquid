@@ -1,0 +1,97 @@
+{% if section.blocks.size > 0 %}
+<section class="contacts__more clearfix">
+  {% for block in section.blocks %}
+  <div class="contacts__more_country">
+    <div class="contacts__more_country-title clearfix">
+      <div class="contacts__more_country-title_img">
+        <img src="{{ block.settings.flag | img_url}}" alt="">
+      </div>
+      <div class="contacts__more_country-title_text">{{ block.settings.country }}</div>
+    </div>
+    <div class="contacts__more_country-adress">{{ block.settings.adress }}</div>
+    <a href="{{ block.settings.url }}" target="_blank" class="contacts__more_country-link">{{ block.settings.shop-name }}</a>
+  </div>      
+  {% endfor %}
+</section>
+{% else %}
+  <h3>Add information about other stores</h3>
+{% endif %}
+
+<section class="modal" id="other-contacts-modal">
+  <div class="modal__body">
+    <div class="modal__header">
+      <i class="close"></i>
+      <h2>Other Offices </h2>
+    </div>
+    <div class="modal__main">      
+      {% for block in section.blocks %}
+      <div class="contacts__more_country">
+        <div class="contacts__more_country-title clearfix">
+          <div class="contacts__more_country-title_img">
+            <img src="{{ block.settings.flag | img_url}}" alt="">
+          </div>
+          <div class="contacts__more_country-title_text">{{ block.settings.country }}</div>
+        </div>
+        <div class="contacts__more_country-adress">{{ block.settings.adress }}</div>
+        <a href="{{ block.settings.url }}" target="_blank" class="contacts__more_country-link">{{ block.settings.shop-name }}</a>
+      </div>      
+      {% endfor %}      
+    </div>    
+  </div>
+</section>
+<script>
+  $('#other-contacts').click(function(e){
+  	$('#other-contacts-modal').fadeIn(150);
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Contacts More Adress",
+    "settings": [
+      {
+        "type" : "header",
+        "content" : "More Adress"
+      }      
+    ],
+    "blocks": [
+        {
+            "type": "adress",
+            "name": "Add Adress Block",
+            "settings": [
+                {
+                  "type": "image_picker",
+                  "id": "flag",
+                  "label": "Flag image"
+                },                
+                {
+                  "type": "text",
+                  "id": "country",
+                  "label": "Country"
+                },
+                {
+                  "type": "richtext",
+                  "id": "adress",
+                  "label": "Full Address"
+                },
+                {
+                  "type": "text",
+                  "id": "shop-name",
+                  "label": "Shop Name"
+                },
+                {
+                  "id": "url",
+                  "type": "url",
+                  "label": "Shop Url"
+                }
+            ]
+        }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,50 @@
+{% if product.type contains 'repeater' %} 
+<div class="product__article_additions-title">
+  <span>{{ collections.cable-upgrade.title }}</span>
+  <div class="widget-tooltip">
+    <i></i>
+    <div class="widget-tooltip__text">{{ collections.cable-upgrade.description | strip_html}}</div>
+  </div> 
+</div>
+<label class="product__article_additions-select">
+  <select id="cable-upgrade-addon" title="">
+    {% for product in collections.cable-upgrade.products %}
+       <option data-price="{{product.price}}" value="{%if product.price_min > 0 %}{{ product.variants[0].id }}{%endif%}">{{ product.title }} (+{{ product.price_min | money }})</option>
+    {% endfor %}
+  </select>
+</label>
+<div class="product__article_additions-title">
+  <span>{{ collections.antenna-upgrade.title }}</span>
+  <div class="widget-tooltip">
+    <i></i>
+    <div class="widget-tooltip__text">{{ collections.cable-upgrade.description | strip_html}}</div>
+  </div> 
+</div>
+<div class="product__article_additions-checkboxs">
+  {% for product in collections.antenna-upgrade.products %}  
+    <div class="checkbox-custom">
+      <label>                                    
+        <input type="checkbox" data-price="{{product.price}}" name="" id="" value="{%if product.price_min > 0 %}{{ product.variants[0].id }}{%endif%}">
+        <i class="controll"></i>
+        <span class="text">{{ product.title }}</span>
+        <span class="price">{{ '(+' }}{{ product.price | money }}{{')'}}</span>
+      </label>
+    </div>           
+  {% endfor %}  
+</div>                            
+<div class="product__article_additions-title">
+  <span>{{ collections.extended-warranty.title }}</span>
+  <div class="widget-tooltip">
+    <i></i>
+    <div class="widget-tooltip__text">{{ collections.extended-warranty.description | strip_html}}</div>
+  </div> 
+</div>
+<div class="product__article_additions-select">
+  <select id="extended-warranty-addon" title="">
+    {% for product in collections.extended-warranty.products %}
+      <option data-price="{{product.price}}" value="{%if product.price_min > 0 %}{{ product.variants[0].id }}{%endif%}">{{ product.title }} (+{{ product.price_min | money }})</option>
+    {% endfor %}
+  </select>
+</div>
+{% endif %}
+<div class="clear"></div>

@@ -1,0 +1,38 @@
+<main class="faq">
+  <div class="wrapper">
+    <h1>{{ page.title }}</h1>
+    <div class="technical-support__top-img" style="background-image: url('{{ 'bg-faq.jpg' | asset_url}}')">
+      {{ 'bg-faq.jpg' | asset_url | img_tag }}
+    </div>
+  </div>
+  	<div class="rte">
+  		{{ page.content }}
+	</div>
+  <article class="technical-support__list"></article>
+</main> 
+
+<script>
+  $('.faq .rte table').each(function(){
+  	var title = $.trim($(this).find('tr:first').text());
+    var content = $(this).find('tr:nth-child(2)').html();
+    var item = '<section class="technical-support__list_item">'+
+        '<h3>'+title+'</h3>'+
+        '<div class="item__content">'+content+'</div>'+
+        '</section>';
+    	$('.technical-support__list').append(item);
+  });
+  $('main.faq').on('click', '.technical-support__list h3', function(e){				
+		if(!$(this).closest('.technical-support__list_item').hasClass('show')){
+			$('.technical-support__list .item__content').slideUp(150);		
+			$('.technical-support__list_item').removeClass('show');
+			$(this).closest('.technical-support__list_item').addClass('show');
+			$(this).closest('.technical-support__list_item').find('.item__content').slideDown(150);	
+		}else{
+			$('.technical-support__list .item__content').slideUp(150);		
+			$('.technical-support__list_item').removeClass('show');
+		}
+	});
+</script>
+
+
+

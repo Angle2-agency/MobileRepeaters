@@ -1,0 +1,13 @@
+a.readmore.button {
+
+  background-color: #3B91FC;
+  color: whitesmoke !important;
+  padding: 10px 30px;
+  border-radius: 5px;
+}
+
+a.readmore.button:hover {
+
+  background-color: #364463;
+  color:  #CACFBA !important;
+}

@@ -1,0 +1,69 @@
+<article class="contacts__article">
+  <div class="contacts__article_hint">{{ section.settings.top-text }}</div>
+  <div class="contacts__article_phone">{{ section.settings.phone }}</div>
+  <div class="contacts__article_between">Between:{{ section.settings.between }}</div>
+  <div class="contacts__article_andtext">{{ section.settings.bottom-text }}</div>
+  <div class="contacts__article_country">
+    <div class="contacts__article_country-title clearfix">
+      <div class="contacts__article_country-title_img uk">
+        <img src="{{ section.settings.flag | img_url}}" alt="">
+      </div>
+      <div class="contacts__article_country-title_text">{{ section.settings.country }}</div>
+    </div>
+    <div class="contacts__article_country-adress">{{ section.settings.adress }}</div>
+  </div>
+</article>
+
+{% schema %}
+  {
+    "name": "Contacts Main Block",
+    "settings": [
+        {
+            "type" : "header",
+            "content" : "Contacts main settings"
+        },
+        {
+          "type": "text",
+          "id": "top-text",
+          "label": "Top text"          
+        },
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Phone number"
+        },
+        {
+          "type": "richtext",
+          "id": "between",
+          "label": "Between"          
+        },
+        {
+          "type": "text",
+          "id": "bottom-text",
+          "label": "Top text"          
+        },
+        {          
+          "type": "image_picker",
+          "id": "flag",
+          "label": "Flag image"
+        },
+        {
+          "type": "text",
+          "id": "country",
+          "label": "Country"
+        },
+        {
+          "type": "richtext",
+          "id": "adress",
+          "label": "Full Address"
+        }
+
+    ]
+  }  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

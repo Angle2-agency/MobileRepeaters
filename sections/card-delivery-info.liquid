@@ -1,0 +1,21 @@
+<div class="rte">{{ section.settings.column_richtext }}</div>
+
+{% schema %}
+  {
+    "name": "Card Delivery Info Text",
+    "settings": [
+		{
+			"type": "richtext",
+   			"id": "column_richtext",
+   			"label": "Text",
+   			"default": "<p>Default <em>richtext</em> <a href=\"https://example.com/\">content</a></p>"				
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

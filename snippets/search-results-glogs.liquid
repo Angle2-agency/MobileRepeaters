@@ -1,0 +1,71 @@
+<main class="blogs">
+  <div class="wrapper">
+    <section class="blogs__nav clearfix">
+      <h1>Search results</h1>
+      <ul class="blogs__nav_filter clearfix">        
+        <li class="blogs__nav_filter-input">
+          <form method="get" action="/search">
+            <input type="hidden" name="type" value="article" />
+            <input type="search" name="q" value="{{search.terms}}" placeholder="Search" />
+          </form>          
+        </li>
+      </ul>
+    </section>
+    {% if search.results_count == 0 %}  
+    <h3>Your search for "{{ search.terms }}" did not yield any results.</h3>
+    {% else %}
+    <section class="blogs__list">    
+      {% for item in search.results %}
+  {% if item.object_type == 'product' and item.type == 'SHOPSTORM_HIDDEN_PRODUCT' %}{% continue %}{% endif %}
+
+		<div class="blogs__list_item">
+          {% if item.image %}
+          <div class="blogs__list_item-img">
+            <a href="{{ item.url }}">
+              {{ item | img_url: '240x', scale: 2 | img_tag: item.title }}
+            </a>                	
+          </div>
+          {% endif %}              
+          <div class="blogs__list_item-description">
+            <h3>{{ item.title }}</h3>
+            <div class="blogs__list_item-description_user"><time pubdate datetime="{{ item.published_at | date: '%Y-%m-%d' }}">{{ item.published_at | date: '%b %d, %Y' }}</time> | by {{ item.author }}</div>
+            <div class="blogs__list_item-description_text">{{ item.content | strip_html | truncatewords: 75 }}</div>
+            <a href="{{ item.url }}" class="blogs__list_item-description_more">Read more</a>
+          </div>
+      </div>
+      {% endfor %}
+    </section>
+    {% endif %}    
+  </div>            
+</main>
+
+
+  {% comment %}
+  
+  
+    
+  {% if search.performed %}
+    
+    {% paginate search.results by 10 %}
+    
+    
+    
+	{% if paginate.pages > 1 %}
+    <div id="pagination">
+      {{ paginate | default_pagination }}
+    </div>
+  	{% endif %}      
+    
+    {% endpaginate %}    
+
+
+    	
+  
+    
+    {% endif %}    
+{% endcomment %}
+    
+    
+    
+  
+

@@ -1,0 +1,227 @@
+<script>
+  if(window.location.pathname.split('/')[3]){
+    var tags = window.location.pathname.split('/')[3].split('+');  
+    widgetLink.purpose = '';
+  	widgetLink.сoverage = tags[0].replace(/-/g, " ");  
+    for(var i=1; i < tags.length; i++){
+      widgetLink.purpose += (i > 1 ? '+':'')+tags[i].replace(/-/g, " ");
+    }  
+  }  
+  
+</script>
+<main>
+  <div class="wrapper">           
+    <ul class="breadcrumb clearfix">
+        <li>
+          <a href="/">Main</a>
+        </li>
+        <li></li>
+      </ul> 
+    	<h1  class="collection-title">{{collection.title}}</h1>
+      <div class="recommend__toptext">{{ collection.description }}</div>
+      <h2 class="recommend__top-title">Chosen options</h2>
+      <ul class="recommend__edit-steps clearfix">
+        <li class="network">
+          {% section 'main-widget-steps-1' %}          
+        </li>
+          <li class="coverage">
+            {% section 'main-widget-steps-2' %}            
+          </li>
+          <li class="purpose">
+            {% section 'main-widget-steps-3' %}
+          </li>
+        </ul>
+        <script>          
+          var purpose = '';
+          if(widgetLink.purpose == '2g'){
+            purpose = 'Voice Calls'
+          }else if(widgetLink.purpose == '3g+4g'){
+            purpose = '3G and 4G'
+          }else if(widgetLink.purpose == '2g+3g+4g'){
+            purpose = 'Voice Calls, 3G and 4G'
+          }
+          if(widgetLink.сoverage)$('.recommend__edit-steps .coverage span').html(widgetLink.сoverage.replace(/\b\w/g, l => l.toUpperCase()));          
+          $('.recommend__edit-steps .purpose span').html(purpose.replace(/\b\w/g, l => l.toUpperCase()));
+        </script>
+      
+  </div>
+
+  <article class="we-recommend">
+    
+     {% if collection.products_count > 0 %}
+    
+<div class="we-recommend__bg clearfix">  
+  <h3>We recommend</h3>
+      <div class="wrapper">
+        {% for product in collection.products %}
+          {% if forloop.first == true %}
+            <section class="recommend__item">
+              <div class="recommend__item_pfoto">
+                <a href="{{ product.url | within: collection }}">
+                  <img src="{{ product | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" />
+                </a>
+              </div>
+              <div class="recommend__item_network">
+                <div class="title">Recommended</div>
+                <div class="description">{{ product.title }}</div>
+              </div>
+              <div class="recommend__item_options">
+              <div class="title">Options</div>
+                <div class="description">
+                  {% include 'product-collection-info' with product %}
+                </div>
+              </div>
+              <div class="recommend__item_price">
+                <div class="old-price">{{ product.compare_at_price | money }}</div>
+                <div class="price">{{ product.price | money }}</div>
+                <a href="{{ product.url | within: collection }}" class="details-link">More details</a>
+              </div>
+            </section>
+        	<section class="recommend__item-mobile clearfix">
+        		<div class="recommend__item_pfoto">
+                  <a href="{{ product.url | within: collection }}">
+                    <img src="{{ product | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" />
+                  </a>                  
+              </div>
+              <div class="title">
+                <span>{{ product.title }}</span>
+              </div>
+              <div class="options">
+                <div class="block-title">Options</div>
+                {% include 'product-collection-info' with product %}
+              </div>
+              <div class="price">
+                <div class="old-price">{{ product.compare_at_price | money }}</div>
+                <div class="price">{{ product.price | money }}</div>
+              </div>
+              <div class="details-link-block">
+              	<a href="{{ product.url | within: collection }}" class="details-link">More details</a>              
+              </div>              
+        	</section>
+          {% endif %}          
+        {% endfor %}        
+      </div>
+</div>  
+    {% else %}
+    <h2 style="text-align: center;padding: 10px;color:#fff;">Nothing found for your parameters</h2>
+    {% endif %}          
+  </article>
+
+  <article class="recommend__upgraded_list">
+    <div class="wrapper">      
+      {% if collection.products_count > 1 %}
+        <h2>Upgraded repeaters</h2>
+        {% for product in collection.products %}
+          {% if forloop.first == false %}
+            <section class="recommend__item">
+              <div class="recommend__item_pfoto">
+                <a href="{{ product.url | within: collection }}">
+                  <img src="{{ product | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" />
+                </a>
+              </div>
+              <div class="recommend__item_network">
+                <div class="title">Upgrade</div>
+                <div class="description">{{ product.title }}</div>
+              </div>
+              <div class="recommend__item_options">
+                <div class="title">Options</div>
+                <div class="description">
+                  {% include 'product-collection-info' with product %}
+                </div>
+              </div>
+              <div class="recommend__item_price">
+                <div class="old-price">{{ product.compare_at_price | money }}</div>
+                <div class="price">{{ product.price | money }}</div>
+                <a href="{{ product.url | within: collection }}" class="details-link">More details</a>            
+              </div>
+            </section>
+            <section class="recommend__item-mobile clearfix">
+              <div class="recommend__item_pfoto">
+                <a href="{{ product.url | within: collection }}">
+                  <img src="{{ product | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" />
+                </a>                  
+              </div>
+              <div class="title">
+                <span>{{ product.title }}</span>
+              </div>
+              <div class="options">
+                <div class="block-title">Options</div>
+                {% include 'product-collection-info' with product %}
+              </div>
+              <div class="price">
+                <div class="old-price">{{ product.compare_at_price | money }}</div>
+                <div class="price">{{ product.price | money }}</div>
+              </div>
+              <div class="details-link-block">
+                <a href="{{ product.url | within: collection }}" class="details-link">More details</a>              
+              </div>              
+            </section>      
+          {% else %}
+            <section class="recommend__item" style="display: none;">
+              <div class="recommend__item_pfoto">
+                <a href="{{ product.url | within: collection }}">
+                  <img src="{{ product | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" />
+                </a>
+              </div>
+              <div class="recommend__item_network">
+                <div class="title">Upgrade</div>
+                <div class="description">{{ product.title }}</div>
+              </div>
+              <div class="recommend__item_options">
+                <div class="title">Options</div>
+                <div class="description">
+                  {% include 'product-collection-info' with product %}
+                </div>
+              </div>
+              <div class="recommend__item_price">
+                <div class="old-price">{{ product.compare_at_price | money }}</div>
+                <div class="price">{{ product.price | money }}</div>
+                <a href="{{ product.url | within: collection }}" class="details-link">More details</a>            
+              </div>
+            </section>
+            <section class="recommend__item-mobile clearfix" style="display: none;">
+              <div class="recommend__item_pfoto">
+                <a href="{{ product.url | within: collection }}">
+                  <img src="{{ product | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" />
+                </a>                  
+              </div>
+              <div class="title">
+                <span>{{ product.title }}</span>
+              </div>
+              <div class="options">
+                <div class="block-title">Options</div>
+                {% include 'product-collection-info' with product %}
+              </div>
+              <div class="price">
+                <div class="old-price">{{ product.compare_at_price | money }}</div>
+                <div class="price">{{ product.price | money }}</div>
+              </div>
+              <div class="details-link-block">
+                <a href="{{ product.url | within: collection }}" class="details-link">More details</a>              
+              </div>              
+            </section>           		
+          {% endif %}          
+        {% endfor %}
+      {% endif %}  
+    </div>
+  </article>            
+</main>
+
+<script>
+  if(window.location.pathname.split('/')[3]){
+  	$('.breadcrumb li:last').text("Recommended Repeaters");
+  }else{
+    $('.breadcrumb li:last').text("{{collection.title}}");
+	$('.recommend__top-title, .recommend__edit-steps, .we-recommend, .recommend__upgraded_list h2').hide();
+    $('.collection-title').show();
+                                           
+	if($(window).width() >= 1000){
+      $('.recommend__upgraded_list .recommend__item:hidden:first').show();
+    }else{
+    	$('.recommend__upgraded_list .recommend__item-mobile:hidden:first').show();
+    }
+	
+                                           
+	
+  }
+</script>

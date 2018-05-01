@@ -1,0 +1,365 @@
+<main class="product" id="{{product.id}}">
+  <div class="wrapper">
+    {% include 'breadcrumb' %}    
+    <section class="product__title clearfix">
+      <div class="fl">
+        <div class="product__title_back">
+          {{ 'its-arro-prev.svg' | asset_url | img_tag }}
+        </div>
+        <h1>{{ product.title }}</h1>
+        {% if product.available %}
+        <div class="product__title_instok">In Stock </div>
+        {% else %}
+        <div class="product__title_instok" style="color:#9b9b9b;">On order</div>        
+        {% endif %}
+      </div>                
+      <div class="fr">
+        <div class="product__title_price">
+          <span>{{ product.compare_at_price_max | money }}</span>
+          <b>{{ product.price | money }}</b>
+        </div>
+      </div>
+    </section>
+    <section class="product__ref">Product Ref: {{ product.variants[0].sku }}</section>
+    <article class="product__article clearfix">
+      <section class="product__article_photos">
+        <div class="product__article_photos-slider">                    
+          {% for image in product.images %}
+            <div class="item">
+              <a href="{{ image | img_url: '1024x1024' }}" target="_blank">
+                <img src="{{ image | img_url: 'large' }}" alt="{{ image.alt | escape }}" />
+              </a>
+            </div> 
+          {% endfor %}
+        </div>
+        {% if product.images.size > 1 %}
+          <div class="product__article_photos-nav">
+            {% for image in product.images %}
+              <div class="item">                                
+                <div class="item-box">
+                  <div class="item-td">
+                    <img src="{{ image | img_url: '120x120' }}" />
+                  </div>                                    
+                </div>                      
+              </div>    
+            {% endfor %}
+          </div>  
+          <script>
+            $('.product__article_photos-slider').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                fade: true,
+                asNavFor: '.product__article_photos-nav',
+                infinite: false
+            });
+            $('.product__article_photos-nav').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                asNavFor: '.product__article_photos-slider',
+                dots: false,
+                centerMode: false,
+                focusOnSelect: true,
+                infinite: false
+            });
+        </script>
+        {% endif %}
+        <div class="product__article_options clearfix">
+          <div class="fl">
+            {% include 'product-collection-info' with product %}
+          </div>
+          <div class="fr">
+            <label>Qty</label>
+            <input type="number" id="product-qty" min="1" class="product__article_options-qty no-spinners" value="1" />
+          </div>
+        </div>
+      </section>
+      <section class="product__article_additions">
+        <div class="product__article_additions-bg">
+          <h3>Additions</h3>
+            <div class="product__article_additions-wrapper">
+                <form action="" id="option-addon">
+                  {% include 'option-addon' %}
+                </form>                
+            </div>
+        </div>                        
+          <div class="product__article_add">
+            <div class="product__article_add-sub">Sub - Total:</div>
+            <div class="product__article_add-total">£ 248.00</div>
+            <div class="product__article_add-button">ADD TO CART</div>
+            <a href="" class="product__article_add-help">NEED HELP?</a>
+          </div>                        
+      </section> 
+    </article>
+  </div>
+  <article class="product__descriptions clearfix">
+    <div class="wrapper">
+      <div class="clearfix">
+        <section class="product__descriptions_description">
+            <h3>Description</h3>
+            <div class="product__descriptions_description-text"></div>
+          </section>
+          <section class="product__descriptions_includes">
+            <h3>Package includes</h3>
+            <div class="product__descriptions_includes-list"></div>
+          </section>
+      </div>      
+      <section class="product__descriptions_speciﬁcations">
+        <ul class="product__descriptions_speciﬁcations-tabs clearfix"><!-- Tabs titles include --></ul>
+        <ul class="product__descriptions_speciﬁcations-list clearfix"><!-- Tabs content include --></ul>
+      </section>
+    </div>
+  </article> 
+</main>
+<main class="product-mobile" id="{{product.id}}">
+  <div class="product-mobile__back"></div>
+  <section class="product-mobile__photos">
+    <div class="product-mobile__photos-slider">                    
+      {% for image in product.images %}
+      <div class="item">
+        <a href="{{ image | img_url: '1024x1024' }}" target="_blank">
+          <img src="{{ image | img_url: 'large' }}" alt="{{ image.alt | escape }}" />
+        </a>
+      </div> 
+      {% endfor %}
+    </div>    
+    <script>
+      $('.product-mobile__photos-slider').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,        
+        infinite: true,
+        dots : true
+      });      
+    </script>    
+  </section>
+  <section class="product-mobile__title clearfix">    
+    <h1>{{ product.title }}</h1>              
+    {% if product.available %}
+    <div class="product-mobile__instok">In Stock </div>
+    {% else %}
+    <div class="product-mobile__instok" style="color:#9b9b9b;">On order</div>        
+    {% endif %}    
+  </section>
+  <section class="product-mobile__ref">Product Ref: {{ product.variants[0].sku }}</section>
+  <section class="product-mobile__prod-short clearfix">
+  	{% include 'product-collection-info' with product %}
+    <div class="product-mobile__price-block">
+    	<div class="price">
+          <span>{{ product.compare_at_price_max | money }}</span>
+          <b>{{ product.price | money }}</b>
+        </div>
+        <div class="quantity">
+          <i data-event="minus" class="minus disabled"></i>
+          <input type="number" id="product-qty" readonly="" value="1">
+          <i data-event="plus" class="plus"></i>
+        </div>
+    </div>
+  </section>
+  <article class="product-mobile__article">
+  	<section class="product-mobile__dropdown addons">
+      <h5>Additions</h5>
+      <div class="product-mobile__dropdown-content">
+        <form action="" id="option-addon-mobile">
+           {% include 'option-addon' %}
+        </form>
+      </div>
+    </section>
+    <div class="product__article_add">
+      <div class="product__article_add-sub">Sub - Total:</div>
+      <div class="product__article_add-total">£ 248.00</div>
+      <div class="product__article_add-button">ADD TO CART</div>
+      <a href="" class="product__article_add-help">NEED HELP?</a>
+    </div>
+    <section class="product-mobile__description">
+      <h3>Description</h3>
+      <div class="product-mobile__description-text"></div>
+    </section>
+    <div class="product-mobile__tabs"></div>
+    <section class="product-mobile__dropdown includes">
+    	<h5>Package includes</h5>
+      	<div class="product-mobile__dropdown-content"></div>
+    </section>
+  </article>  
+</main>
+
+<div id="product-description" class="rte" style="display: none;">
+  {{ product.description }}
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+  $('main.product .product__title_back, .product-mobile__back').click(function(e) {
+    window.history.back();
+  });
+
+  /* ===========================================================================
+                                Total SUMM
+  ============================================================================== */
+  function subTotal(){    
+    var qty;
+    var computed;
+    if($(window).width() > 1000){
+      	qty = Number($('.product #product-qty').val());
+      	computed = {{product.price}} * qty;
+    	computed += parseInt($('.product #cable-upgrade-addon option:selected').attr('data-price'));
+        $('.product .product__article_additions-checkboxs input[type="checkbox"]:checked').each(function(){
+          computed += parseInt($(this).attr('data-price'));
+        });
+        computed += parseInt($('.product #extended-warranty-addon option:selected').attr('data-price'));
+    }else{
+      	qty = Number($('.product-mobile #product-qty').val());
+      	computed = {{product.price}} * qty;
+        computed += parseInt($('.product-mobile #cable-upgrade-addon option:selected').attr('data-price'));
+        $('.product-mobile .product__article_additions-checkboxs input[type="checkbox"]:checked').each(function(){
+          computed += parseInt($(this).attr('data-price'));
+        });
+        computed += parseInt($('.product-mobile #extended-warranty-addon option:selected').attr('data-price'));
+    }
+    
+    computed = computed/100;
+    console.log(computed);
+    var format = '{{shop.money_format}}'.replace('{amount}', '').replace('{}', '') + ' '+computed.toFixed(2);
+    $('.product__article_add-total').html(format);
+  };
+  $('main').on('change', '#cable-upgrade-addon, .product__article_additions-checkboxs input, #extended-warranty-addon', function(){
+    subTotal();
+  });
+  $('main.product').on('change', '#product-qty', function(e){
+    if($(this).val() > 0)subTotal();    
+  });
+  $('main.product').on('keyup', '#product-qty', function(e){
+    if($(this).val() > 0)subTotal();    
+  });
+
+  subTotal();
+
+/* ===========================================================================
+                          Product description parser
+  ============================================================================== */
+
+  function descriptionParser(){
+    $('#product-description > table').each(function(){
+        var type = $.trim($(this).find('tr:first').text());
+        if(type == 'description')getDescription($(this));
+        if(type == 'package includes')packageIncludes($(this));
+    });
+    if($('#product-description > ul').length)getTabs();
+  }
+
+  
+
+  function getDescription(data){
+      var content = data.find('tr:nth-child(2) td').html();
+      $('.product__descriptions_description-text, .product-mobile__description-text').html(content);
+      
+  }
+  function packageIncludes(data){
+      var content = data.find('tr:nth-child(2) td').html();
+      $('.product__descriptions_includes-list, .product-mobile__dropdown.includes .product-mobile__dropdown-content').html(content);      
+  }
+  function getTabs(){
+    $('#product-description > ul > li').each(function(index, el) {
+      var tabId = $(this).text().replace(/\s+/g,"-").toLowerCase();
+      var tabName = $.trim($(this).text());      
+      var tabTitle = '<li '+(index == 0 ? 'class="current" ':'')+'data-link="'+tabId+'">'+tabName+'</li>';
+      var tabContentBlock = '<li id="'+tabId+'"'+(index == 0 ? ' class="current" ':'')+'>You have not added anything to this section.</li>'
+      var tabContent = $('#product-description > table').find('tr:first:contains("'+tabName+'") + tr > td').html();
+      $('.product__descriptions_speciﬁcations-tabs').append(tabTitle);
+      $('.product__descriptions_speciﬁcations-list').append(tabContentBlock);
+      $('#'+tabId).html(tabContent);
+      $('.product__descriptions_speciﬁcations-list table td').removeAttr('style');
+      
+      var mobileTabName = $.trim($(this).text());
+      var mibileContent = '<section class="product-mobile__dropdown">'+
+          '<h5>'+mobileTabName+'</h5>'+
+          '<div class="product-mobile__dropdown-content">'+tabContent+'</div></section>';
+      $('.product-mobile__tabs').append(mibileContent);
+    }); 
+  }
+  descriptionParser();
+
+   /* ===========================================================================
+                                  Add to card
+  ============================================================================== */
+
+  function setCard(post){
+    $.ajax({
+      url: '/cart/update.js',
+      type : 'post',
+      dataType : 'json',      
+      data : {
+        updates: post
+      },
+      success: function(data){        
+        updateCard();        
+      }
+    });
+  }
+
+  
+
+  
+
+  $('.product__article_add-button').click(function(e) {
+      var id = {{product.variants[0].id}};
+       var qty;
+      if($(window).width() > 1000){
+      	qty = Number($('.product #product-qty').val());
+      	computed = {{product.price}} * qty;    	
+        }else{
+          qty = Number($('.product-mobile #product-qty').val());
+          computed = {{product.price}} * qty;        
+        } 
+      var post = {};
+      $('#option-addon select').each(function(index, el) {
+        if($(this).val()){
+          post[$(this).val()] = 1          
+        }
+      });
+      $('#option-addon input[type="checkbox"]:checked').each(function(index, el) {        
+        if($(this).val()){
+          post[$(this).val()] = 1          
+        }
+      });      
+      post[id] = Number(qty);      
+      setCard(post);
+
+  });
+
+  $('.card__list_item-remove').click(removeItemCard);
+  
+  $('.product-mobile').on('click', '.quantity i', function(e){
+    var ev = $(this).attr('data-event');
+    var val = $(this).closest('.quantity').find('input').val();
+    if(ev == 'plus'){
+      val++;
+      $(this).closest('.quantity').find('input').val(val);
+      if(val > 1){
+        $(this).closest('.quantity').find('.minus').removeClass('disabled');
+      }
+    }else if(ev == 'minus'){
+      if(val == 1)return false;
+      val--;
+      $(this).closest('.quantity').find('input').val(val);
+      if(val == 1)$(this).addClass('disabled');
+    }
+    subTotal();
+	});
+    $('.product-mobile').on('click', '.product-mobile__dropdown h5', function(e){      
+      var show = $(this).hasClass('show');
+      if(!show){
+        $(this).addClass('show');
+        $(this).closest('.product-mobile__dropdown').find('.product-mobile__dropdown-content').show();
+      }else{
+        $(this).removeClass('show');
+        $(this).closest('.product-mobile__dropdown').find('.product-mobile__dropdown-content').hide();
+      }  
+    });
+</script>

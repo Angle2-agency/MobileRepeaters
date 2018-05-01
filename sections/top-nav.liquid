@@ -1,0 +1,100 @@
+<div class="header__nav_params-region">{{ section.settings.currentRegion }}</div>  
+
+
+<section class="modal" id="location-settings">
+  <div class="modal__body">
+    <div class="modal__header">
+      <i class="close"></i>
+      <h2>Location Settings</h2>
+    </div>
+    <div class="modal__main">
+      <div class="location-settings__select">
+        <div class="location-settings__select_label">Location</div>        
+        <label for="modal-location">
+          <select name="" id="modal-location">
+            {% for block in section.blocks %}
+            	{{block.settings.name}}
+            	<option value="{{block.settings.url}}">{{block.settings.name}}</option>
+            {% endfor %}            
+          </select>
+        </label>                        
+      </div>
+      <!--div class="location-settings__select">
+        <div class="location-settings__select_label">Language</div>
+        <label>
+          <select name="" id="modal-location">                            
+            <option value="" selected="">English</option>
+            <option value="">German</option>
+            <option value="">French</option>                            
+          </select>
+        </label>                        
+      </div-->
+    </div>
+    <div class="modal__footer">
+      <a href="" class="modal__footer_save">Save</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  $('#shopify-section-top-nav .header__nav_params-region').click(function(e){
+  	$('#location-settings').fadeIn(150);
+  });
+  $('#location-settings .modal__footer_save').click(function(e){
+    e.preventDefault();
+    var url = $('#modal-location').val();
+    if(url.length){
+    	window.open(url, '_blank');
+    }
+    return false;
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Regions settings",
+    "class" : "fl",
+    "settings": [
+      {
+        "type" : "header",
+        "content" : "Add shops to other regions"        
+      },
+      {
+      	"type": "text",
+      	"id": "currentRegion",
+      	"label": "Region Name"
+      }
+    ],
+    "blocks": [
+            {
+                "type": "regions",
+                "name": "Region Info",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "name",
+                        "label": "Region Name"
+                    },
+					{
+                        "id" : "url",
+                        "type" : "url",
+                        "label" : "Region Url"
+					},
+					{
+                      "type" : "checkbox",
+                      "id" : "id",
+                      "label" : "Text",
+                      "default" : false,
+                      "info" : "Text"
+					}
+                ]
+            }
+        ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
